@@ -296,130 +296,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/09/dns学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Goin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/09/dns学习笔记/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-09T11:25:31+08:00">
-                2017-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h1><p>关于域名的常识<br>www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）<br>www.baidu.com.    才是一个域名【注意那个点，表示根域】</p>
-<p>TLP(Top Level Domain)</p>
-<p>递归查询，响应请求下一级查询的地址，DNS本身之间不提问<br>迭代查询，<br>yum install bind<br>yum install bind-chroot    #用于改变目录/var/named-&gt;/var/named/chroot/var/named,提高安全性<br>cd /var/named<br>cp -a data/<br>cp -a dynamic/<br>cp -a slaves/<br>cp -a named.ca named.empty named.localhost named.loopback /var/named/chroot/var/named/</p>
-<p>关于权限<br>named下所有文件及目录用户组是named，文件所有者root,目录所有者named</p>
-<p>/var/named/chroot/var/named/下放正向解析的zone文件</p>
-<p>PTR PoinTeR,指向的缩写，反解到主机名</p>
-<ol>
-<li>点击开始, 点击运行, 键入REGEDIT, 然后按确定。</li>
-<li>点选至以下的子键:<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Linkage</li>
-<li>双击Route项,查看键值，找到排第一位的内容，然后点取消</li>
-<li>双击Bind项，找到第3步找到的排第一的内容，将其剪切粘贴到第一位，然后点击确定</li>
-<li>完成后按确定退出注册表编辑器.</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/06/tomcat学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -953,7 +829,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
