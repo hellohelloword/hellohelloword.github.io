@@ -296,6 +296,130 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/08/02/私钥转换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/02/私钥转换/" itemprop="url">私钥转换ppk</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T12:42:13+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>背景知识<br>openSSL是密码学库，主要设计目的是加密网络数据流（应用层和传输层）。<br>OpenSSH是使用OpenSSL实现的Remote Shell  </p>
+<p>  运维中常用的连接软件有:</p>
+<pre><code>1. xshell
+2. securecrt
+3. putty
+4. winscp 图形化sftp
+</code></pre><p>  xshell推荐使用，因为既可以用rsa格式的私钥，也可以用PPK私钥</p>
+<hr>
+<h3 id="securecrt下的私钥转换成winscp下可用的ppk私钥的方法"><a href="#securecrt下的私钥转换成winscp下可用的ppk私钥的方法" class="headerlink" title="securecrt下的私钥转换成winscp下可用的ppk私钥的方法"></a>securecrt下的私钥转换成winscp下可用的ppk私钥的方法</h3><p><strong>方法一</strong>：直接用winscp指定securecrt的私钥，软件会自动识别并提示转换成ppk，按向导提示操作即可<br><strong>方法二</strong>：用putty key generator将rsa私钥转换成ppk私钥<br><strong>方法三</strong>：用高于6.5版本的securecrt 工具-&gt;转换私钥为openssh格式  </p>
+<hr>
+<p>securecrt<br>secure shell (ssh)<br>openssh         des-ede3-cbc rsa private key<br>winscp<br>openssh rsa密钥 aes256-cbc putty private key ppk  </p>
+<p>openssh 密钥格式<br>putty private key密钥格式  </p>
+<p>openssl   </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/10/dns学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,7 +846,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -735,7 +859,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
