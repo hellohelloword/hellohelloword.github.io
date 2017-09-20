@@ -296,6 +296,233 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/09/20/linux安装phpstudy后phpmyadmin error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/linux安装phpstudy后phpmyadmin error/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T15:59:00+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>问题描述：<br>  linux安装phpstudy后，phpmyadmin打不开，报错<br>  phpMyAdmin - Error<br>  Cannot start session without errors, please check errors given in your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.</p>
+<p>解决方法：<br>  vi /phpstudy/server/php/etc/php.ini<br>定位如下行<br>session.save_path = “”<br>修改为<br>session.save_path = “/phpstudy/www/tmp”<br>如果行首有分号“;”要删除</p>
+<p>然后重启phpstudy<br>phpstudy restart</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/08/24/windows虚拟wifi有关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/24/windows虚拟wifi有关/" itemprop="url">windows虚拟wifi有关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T11:00:00+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  windows电脑虚拟wifi共享网络，无线网卡共享有线网卡网络，无线网卡共享无线网卡网络<br>首先，我们一般会<br>netsh wlan show drivers    #检查下hosted network supported 是否是yes,如果是no，非win10的操作系统，则可以尝试下更新网卡驱动；如果是win10的系统，则用win10自带的Mobile hotspot去共享；如果是yes,则继续<br>netsh wlan set hostednetwork mode=allow ssid=wifi key=123456789<br>netsh wlan start hostednetwork<br>netsh wlan show hostednetwork</p>
+<p>如果出现wifi自动关闭，或无连接终端，wifi自动关闭的情况<br>则可以在设备管理器里找出虚拟出的网卡，然后右键属性，电源管理，取消勾选“允许电脑关闭此设备已节能”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/08/21/解决外接显示器桌面图标变乱/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -955,7 +1182,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -968,7 +1195,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
