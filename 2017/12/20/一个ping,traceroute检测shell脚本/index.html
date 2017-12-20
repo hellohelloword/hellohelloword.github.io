@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use “tail -n 100 traceroute.txt” #versi">
+<meta name="description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use &quot;tail -n 100 traceroute.txt&quot; #vers">
 <meta name="keywords" content="linux,系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个ping，traceroute检测shell脚本">
 <meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/2017/12/20/一个ping,traceroute检测shell脚本/index.html">
 <meta property="og:site_name" content="行走在技术的道路上，目标高，精，尖！">
-<meta property="og:description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use “tail -n 100 traceroute.txt” #versi">
-<meta property="og:updated_time" content="2017-12-20T08:33:19.863Z">
+<meta property="og:description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use &quot;tail -n 100 traceroute.txt&quot; #vers">
+<meta property="og:updated_time" content="2017-12-20T08:43:12.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个ping，traceroute检测shell脚本">
-<meta name="twitter:description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use “tail -n 100 traceroute.txt” #versi">
+<meta name="twitter:description" content="#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file. #want to check the result,please use &quot;tail -n 100 traceroute.txt&quot; #vers">
 
 
 
@@ -360,11 +360,40 @@
       
 
       
-        <p>#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file.</p>
-<p>#want to check the result,please use “tail -n 100 traceroute.txt”</p>
-<p>#version 2</p>
-<p>#20170614</p>
-<p>#!/bin/sh<br>while [ “1” = “1” ]<br>do<br>ping -c 1 192.168.30.21 &gt; /dev/null<br>a=$?<br>if [ $a -eq 1 ]<br>then<br>    echo $a &gt;&gt; ping.txt<br>    b=$(awk ‘END{print NR}’ ping.txt)<br>    if [ $b -eq 5 ]<br>    then<br>        date=<code>date +%Y%m%d-%k:%M:%S</code><br>        echo “=======start=======” &gt;&gt; traceroute.txt<br>        echo $date &gt;&gt; traceroute.txt<br>        traceroute 8.8.8.8 &gt;&gt; traceroute.txt<br>        c=$(awk ‘END{print NR}’ traceroute.txt)<br>        if [ $c -gt 3000 ]<br>        then<br>            tail -n 300 &gt; traceroute-temp.txt<br>            cat traceroute-temp.txt &gt; traceroute.txt<br>            rm -rf traceroute-temp.txt<br>        fi<br>    fi<br>else<br>    cat /dev/null &gt; ping.txt<br>fi<br>done</p>
+        <pre><code>
+#this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file.
+#want to check the result,please use "tail -n 100 traceroute.txt"
+#version 2
+#20170614
+#!/bin/sh
+while [ "1" = "1" ]
+do 
+ping -c 1 192.168.30.21 > /dev/null
+a=$?
+if [ $a -eq 1 ]
+then 
+    echo $a >> ping.txt
+    b=$(awk 'END{print NR}' ping.txt)
+    if [ $b -eq 5 ]
+    then 
+        date=` date +%Y%m%d-%k:%M:%S `
+        echo "=======start=======" >> traceroute.txt
+        echo $date >> traceroute.txt
+        traceroute 8.8.8.8 >> traceroute.txt
+        c=$(awk 'END{print NR}' traceroute.txt)
+        if [ $c -gt 3000 ]
+        then
+            tail -n 300 > traceroute-temp.txt
+            cat traceroute-temp.txt > traceroute.txt
+            rm -rf traceroute-temp.txt
+        fi
+    fi
+else
+    cat /dev/null > ping.txt
+fi
+done
+</code></pre>
+
 <p>  脚本说明：ping检测到ip192.168.30.21，连续不通5次就输出traceroute 8.8.8.8的结果到traceroute.txt</p>
 
       
