@@ -296,147 +296,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/12/27/Cisco常用命令及初始化配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Goin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/27/Cisco常用命令及初始化配置/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T18:11:43+08:00">
-                2017-12-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: cisco���������ʼ������<br>date: 2017-12-27 17:40:00<br>tags: ���磬cisco</p>
-<p>CISCO��ʼ������</p>
-<p>authorization/��Ȩ<br>authentication/����<br>accounting/���ƣ�����<br>command/����<br>defined/����<br>execute/ִ��<br>parameters/����<br>prompt/���ݵģ���ʾ<br>reverse/���棬�෴<br>timestamp/ʱ����</p>
-<p>һ,ͨ�ó�ʼ������=======================================================<br>+++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>��password cisco��ok��,��������ʱ����ע�ⲻҪ���ո���,���ո��ǻ�����ȥ�ġ�<br>+++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>1�������ʣ�9600bps 8λ����λ 1λֹͣ ����żУ�� ������<br>2��switch#copy running-config startup-config //�������ã��û�ģʽ��<br>3��router#debug ip packet    //���ٰ��������������<br>4��router#no debug ip packet //�رյ��� no debug all//�ر�����debug<br>��ע�⣬debug��Чʱ�ǳ�Ӱ���豸���ܣ�ʵ����ʱ���Ӽ�����ǧms���ȣ�cpuҲ�ߣ�����ʹ�á�<br>5��Router(config)#banner motd#<br>Attention please,You have entered a secured system.<br>Authorized access only!<br>Please do not modify the configuration.<br>If you have any question,please call 8888888#   //������ʾ������Ϣ(banner/���                         motd/message of the day)<br>WARNING:<br>This system is property of Cambo Six Co. Ltd.<br>Unauthorized access to this system is forbidden and will be prosecuted by law.<br>By accessing this system, you agree that your actions be monitored.</p>
-<p>6������console��<br>switch|router(config)#line console 0<br>switch|router(config-line)#login    #��½����֤no login/��½������֤<br>switch|router(config-line)#login local    #ʹ��·�����������ݿ���֤<br>switch|router(config-line)#password cisco  #���ô��ڵ�¼����cisco<br>switch|router(config-line)#privilege 15    #�����û���Ȩ�޼���15�����ߣ�<br>switch|router(config-line)#motd-banner    #console��banner��ʾ����ʹ��<br>switch|router(config-if)#logging synchronous  #console����ʾ����̨��Ϣ����ֹ��������ʱ������<br>switch|route(config-line)#log system<br>switch|route(config-line)#exec-timeout 0 0 //���ÿ���̨�Ự��ʱΪ0(������ʱ)<br>switch|route(config-line)#exec-timeout [minutes] [seconds] //���ÿ���̨�Ự��ʱlogoutʱ��<br>switch|route(config-line)#exec-timeout 1 23 //1��23����timeout logout<br>switch|route(config-line)#no domain-lookup    #�رձ���DNS����</p>
-<p>�����û�������������֤<br>set authentication login local{enable|disable}[all|console|telnet|http]<br>������Ȩ������������֤<br>set authentication enable local {enable|disable}[all|console|telnet|http]<br>7������VTY<br>(Virtual teletype)<br>telnet<br>Router(config)#line vty 0 4<br>Router(config-line)transport input telnet<br>Router(config-line)username cisco privilege 15 secret cisco��Router(config-line)#password cisco��    #����VTYtelnet��½�û���������<br>Router(config-line)#login<br>ssh<br>Router(config)line vty 0 4<br>Router(config-line)transport input ssh<br>Router(config-line)username cisco privilege 15 secret cisco</p>
-<p>#����VTYssh��½�û���������</p>
-<p>Router(config-line)#no motd-banner    #ȡ��telnet��banner��ʾ����<br>Router(config-if)#logging synchronous  #vty����ʾ����̨��Ϣ����ֹ��������<br>                       ʱ������<br>8,<br>route|switch(config)#enable password enable    #���ý���privilage mode<br>password<br>route|switch��config)#no password    //ȡ������<br>9��<br>(config)#service password-encryption   //�������������ܣ�ע����Ϊ������������<br>10,<br>switch(config)#line console 0<br>switch(config-line)#log system<br>switch(config-line)#exec-timeout 0 0 //���ÿ���̨�Ự��ʱΪ0(������ʱ)<br>switch(config-line)#exec-timeout [minutes] [seconds] //���ÿ���̨�Ự��ʱlogoutʱ��<br>switch(config-line)#exec-timeout 1 23 //1��23����timeout logout<br>11,switch/router&gt;show interface status //�������ڲ�������ʶ�������˿�<br>12,switch/router(config)#no ip domain-lookup</p>
-<p>#�ر�����ؽ�������(����ping����ping��ͨ)</p>
-<p>13,switch/router#ping www.qq.com repeat 100    #ping www.qq.com100�Σ�����ping<br>��,����switch��ʼ������=================================================</p>
-<p>VLAN  ID<br>ID��Χ�ͽ���<br>1.0��4095   ��������ϵͳʹ�� �û����ܲ鿴��ʹ��<br>2.1  ����  ciscoĬ�ϵ�vlan,�û�����ʹ�õ��ǲ���ɾ��<br>3.2–1001  ����  ������̫����VLAN���û����Դ�����ʹ�á�ɾ����<br>4.1002–1005  ����  ����FDDI�����ƻ���CISCOĬ��VLAN���û�����ɾ��<br>5.1006–1024  ����  ��������ϵͳʹ�á��û����ܲ鿴��ʹ�á�<br>6.1025–4094  ��չ  ����������̫��VLAN</p>
-<p>VLAN<br>switch&gt;enable  ������Ȩģʽ<br>switch#vlan database<br>switch(vlan)#vlan ID name vlan��  //����vlan<br>switch(config)#vlan ID  //����vlan<br>switch(config-if)#ip address x.x.x.x x.x.x.x //����vlan ip<br>switch(config-vlan)#int range fa0/1 -5<br>switch(config if range)#switchport access vlan ID<br>vlan�������Ӷ˿�<br>Switch-1(config)#interface range fastethernet 0/1 - 23<br>Switch-1(config-range)#switchport access vlan 2&lt;�д���֤&gt;</p>
-<p>switch(config)#interface range fastethernet 0/1 - 10<br>switch(config)#int range fa 0/1 - 5<br>switch(config)#int range fa 0/1-5<br>switch(config)#switchport access vlan 11</p>
-<p>����VTP<br>switch#vlan database<br>switch(vlan)#vtp server|client|transparent<br>switch(vlan)#vtp domain <strong><em> //����vtp domain��<br>switch(vlan)#vtp password </em></strong><br>switch(vlan)#vtp pruning  //����vtp�ü�<br>switch(vlan)#snmp-server enable traps vtp<br>switch#show vtp or switch#show vtp status</p>
-<p>����������״̬��<br>switch: ��ROM״̬�� ·������rommon&gt;<br>hostname&gt;  //�û�ģʽ<br>hostname#  //��Ȩģʽ<br>hostname(config)#  //ȫ������ģʽ<br>hostname(config-if)#   //�ӿ�״̬ </p>
-<p>switch&gt;enable  //������Ȩģʽ<br>switch#config terminal  //����ȫ������ģʽ<br>switch(config)#hostname  //���ý�������������(core/distribution/access,building floor)<br>switch(config)#enable secret xxx  //���ý�����Ȩģʽ���ܿ���<br>switch(config)#enable password xxa   //���ý�����Ȩģʽ���ܿ���<br>switch(config)#line console 0  //��������̨��<br>switch(config-line)#line vty 0 4  //���������ն�<br>switch(config-line)#login  //������¼<br>switch(config-line)#password xx  //���õ�¼����xx<br>switch#exit  //�������� ������VLAN���ã�<br>switch#vlan database  //����VLAN����<br>switch(vlan)#vlan 2  //��VLAN 2<br>switch(vlan)#no vlan 2  //ɾvlan 2<br>switch(config)#int f0/1 //�����˿�1<br>switch(config-if)#switchport access vlan 2 //��ǰ�˿ڼ���vlan 2<br>switch(config-if)#switchport mode trunk //����Ϊ����<br>switch(config-if)#switchport trunk encapsulation dot1q //��װdot1qЭ��<br>switch(config-if)#switchport trunk allowed vlan 1��2  //����������vlan<br>switch(config-if)#switchport trunk encapsulation dot1q  //����vlan �м�<br>switch(config)#vtp domain  //����vtp����<br>switch(config)#vtp password   //����vtp����<br>switch(config)#vtp mode server   //����vtpģʽ<br>switch(config)#vtp mode client  //����vtpģʽ<br>switch(config)#interface vlan 1  //����vlan 1<br>switch(config-if)#ip address  //����IP��ַ<br>switch(config)#ip default-gateway   //����Ĭ������<br>switch#dir flash:  //�鿴���� ��������ʾ���<br>switch#write   //����������Ϣ<br>switch#show vtp   //�鿴vtp������Ϣ<br>switch#show run   //�鿴��ǰ������Ϣ<br>switch#show vlan  //�鿴vlan������Ϣ<br>switch#show interface status   //�鿴�˿���Ϣ<br>switch#show int f0/0   //�鿴ָ���˿���Ϣ</p>
-<p>��,����switch��ʼ������=================================================</p>
-<p>��,Router��ʼ������=====================================================</p>
-<pre><code> //ͨ������ʹ�ó����ն�����
-//����CONSOLE�ڵ�½����
- //config telnet login password
-</code></pre><p>1,show running-config ��ʾ���е����ã�ROM�У�<br>2,����static route<br>router(config)#ip route 20.20.20.0 255.255.255.0 10.10.10.1    #20.20.20.0Դ��ַ��10.10.10.1��һ����ַ<br>router(config)#ip route 20.20.20.0 255.255.255.0 fa 0/0<br>router(config)#no ip route 20.20.20.0 255.255.255.0 10.10.10.1 </p>
-<p>3,����RIP<br>router(config)#router rip<br>router(config-router)#version 2 //ʹ��V2�汾<br>router(config-router)#no version //�ָ���Ĭ�ϣ���V1����V1,V2��<br>router(config-router)#network 20.0.0.0<br>router(config-router)# network 10.10.0.0 //ͨ���뱾·��ֱ�������ξͿ�����<br>router(config-router)#passive-interface s 0  //����RIP�����ӿ�-s0�ӿڣ����Ӹö˿���������·����Ϣ������·�ɸ������򣬽�ʡ������Դ����RIP�����ӿ�����·�ɸ��³�ȥ��<br>router(config-router)#no passive-interface s 0 //ȡ��s0����</p>
-<p>router#show ip protocols //��ʾ·��Э��<br>router#debug ip rip //��̬�鿴rip������Ϣ<br>router#no debug all<br>router(config)#interface lookback 0 //����lookback�ػ��ӿ�<br>(�ػ��ӿ�-�൱��һ̨PC��Ч����������)<br>router(config-if)#ip address 30.30.30.1 255.255.255.0  //���ûػ��ڵ�ַ</p>
-<p>4,��RIP�й���·��<br>R1(config)#access-list 1 deny 20.0.0.0 0.0.0.255<br>R1(config)#access-list 1 permit any //����һ��ACL 1�������У�������R1�㲥20����·����Ϣ [deny/���ϡ��ܾ�]<br>R1(config)#router rip<br>R1(config-router)distribue-list 1 out ethernet 0 //Ӧ��acl 1 ��RIPЭ���У���ֹ20��ethernet0�ڳ�ȥ��</p>
-<p>5,��·״̬·��ѡ��Э��OSPF����<br>����Serial��IP,ʱ�����ʣ�clock rate 6400��ʱ���������˲�����ͬ��<br>Router(config)#router ospf 100  //����OSPF·��Э��(100��process-id)<br>Router(config-router)#network 10.10.10.0 0.0.0.255 area 0 //����ֱ�����磬�����Ƿ����룬0��area id,(ָ�����нӿ�)</p>
-<p>����OSPF����<br>Router#show ip protocols //�������õ�·��Э��<br>Router#show ip route  //��ʾ·��<br>Router#show ip ospf interface //��ʾarea-ID�ڽӵ���Ϣ<br>Router#show ip ospf neighbor  //��ʾospf���ھ�<br>Router#debug ip ospf events  //��ʾOSPF��ϸ������Ϣ<br>Router#debug ip ospf packet  //��ʾospf packet��Ϣ</p>
-<p>6,����SPAN<br>(Switched Port Analyzer,�˿ھ���)��������<br>ʵ������fa 4/10�˿�vlan 1-4094������������fa 4/15<br>Switch(config)# monitor session 1 source interface fastethernet 4/10 //����Դ�˿�fa 4/10����������Դ�˿ڣ�<br>Switch(config)# monitor session 1 filter vlan 1-4094 //��������Դ�˿�Ϊtrunkģʽʱ��ѡ��Ҫ������vlan �����ݣ�����Ϊ����vlan 1-4094��������<br>Switch(config)# monitor session 1 destination interface fastethernet 4/15 //����Ŀ�Ķ˿�fa 4/15��Ҳ������������ץ����ת���˿ڣ�</p>
-<p>7,acl<br>Access control,���ʿ����б�<br>8,qos</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/12/27/linux学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1708,13 +1567,156 @@ done
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/05/Markdown常用语法与学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/05/Markdown常用语法与学习笔记/" itemprop="url">Markdown常用语法与学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T18:49:00+08:00">
+                2017-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>强调<br><em>这是斜体</em><br><em>这也是斜体</em><br><strong>这是粗体</strong><br><strong>这也是粗体</strong><br>&#160;    注：符号可跨行，可加空格<br><strong><em>&#160;  **</em></strong><br>这是空格或缩进可以,然后空格再接字符；</p>
+<pre><code>这个是代码格式原样输出</code></pre>
+
+
+<h2 id="分割线，可以单独成行，可含空格"><a href="#分割线，可以单独成行，可含空格" class="headerlink" title="分割线，可以单独成行，可含空格"></a>分割线，可以单独成行，可含空格</h2><hr>
+<blockquote>
+<p>这是引用<br>翻译成html就是<blockquote></blockquote></p>
+<p>这是引用</p>
+<blockquote>
+<p>这是引用中的引用</p>
+</blockquote>
+</blockquote>
+<p>Setext方式标题</p>
+<h1 id="大标题"><a href="#大标题" class="headerlink" title="大标题"></a>大标题</h1><h2 id="小标题"><a href="#小标题" class="headerlink" title="小标题"></a>小标题</h2><p>Art方式标题<br>【注意#之后的空格一定不能少，少了就会原样文本输出】</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p>#无序列表<br>符号之后的空格不能少，”-“,”+”,”*”效果一样，但不可混合使用，【混合是嵌套列表】</p>
+<ul>
+<li>无序列表</li>
+<li>无序列表</li>
+</ul>
+<p>#有序列表<br>数字不能省，可无序，空格不能少</p>
+<ol>
+<li>有序列表</li>
+<li>有序列表</li>
+</ol>
+<p>#嵌套列表<br>“-，+，*”效果一样，空格不能少</p>
+<ul>
+<li>嵌套列表<ul>
+<li>嵌套列表</li>
+<li>嵌套列表</li>
+<li>嵌套列表</li>
+</ul>
+</li>
+</ul>
+<p>超链<br><a href="http://hellohelloword.github.io" title="Goin的博客">Goin’s github</a></p>
+<p>图片超链<br><a href="https://hellohelloword.github.io/uploads/avatar.png" title="这个是提示">这应该是标签</a></p>
+<p>插入图片测试<br><img src="/uploads/avatar.jpg" alt="" title="这是插入图片测试"><br><img src="/uploads/test.gif" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -1757,7 +1759,7 @@ done
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
