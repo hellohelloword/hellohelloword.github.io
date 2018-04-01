@@ -100,7 +100,7 @@
 <meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/2017/12/27/linux学习笔记/index.html">
 <meta property="og:site_name" content="行走在技术的道路上，目标高，精，尖！">
 <meta property="og:description" content="fcitx    中文输入法  通配符，代表一个或多个任意字符?    通配符，仅表示一个任意字符ctrol+alt+t        #命令行终端快捷方式Ctrl + Alt + F2     #X window切换到命令行模式  /boot/bin    执行命令/sbin    重要系统执行命令/dev/etc/srv    service/var    variable/opt    第三">
-<meta property="og:updated_time" content="2017-12-27T10:10:04.379Z">
+<meta property="og:updated_time" content="2018-04-01T02:49:31.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux学习笔记">
 <meta name="twitter:description" content="fcitx    中文输入法  通配符，代表一个或多个任意字符?    通配符，仅表示一个任意字符ctrol+alt+t        #命令行终端快捷方式Ctrl + Alt + F2     #X window切换到命令行模式  /boot/bin    执行命令/sbin    重要系统执行命令/dev/etc/srv    service/var    variable/opt    第三">
@@ -364,8 +364,7 @@
 <ul>
 <li>通配符，代表一个或多个任意字符<br>?    通配符，仅表示一个任意字符<br>ctrol+alt+t        #命令行终端快捷方式<br>Ctrl + Alt + F2     #X window切换到命令行模式</li>
 </ul>
-<p>/boot<br>/bin    执行命令<br>/sbin    重要系统执行命令<br>/dev<br>/etc<br>/srv    service<br>/var    variable<br>/opt    第三方协力程式<br>/usr unix software resource<br>/tmp<br>/proc    内存中的数据</p>
-<p>top参数<br>virt 是虚拟内存<br>res是常驻内存<br>shr是共享内存</p>
+<p>/boot<br>/bin    执行命令<br>/sbin    重要系统执行命令<br>/dev<br>/etc<br>/srv    service<br>/var    variable<br>/opt    第三方协力程式<br>/usr unix software resource<br>/tmp<br>/proc    内存中的数据<br><a id="more"></a><br>top参数<br>virt 是虚拟内存<br>res是常驻内存<br>shr是共享内存</p>
 <p>1）下面以80G硬盘为服务器做的分区和挂载点：（本例是在VM6.0中虚拟的80G硬盘，安装Red Hat Linux9.0时进行的分区和挂载点设置）<br>1、空闲的80G SCSI硬盘.</p>
 <p>2、先分一个1G分区，挂载点为：/<br>3、再分一个交换分区，是内存的1-2倍<br>4、分一个100M分区，挂载点为：/boot<br>5、分一个分区为1024M，挂载点为：/opt<br>6、分一个4000M分区，挂载点为：/tmp<br>7、分一个10G分区，挂载点为：/home<br>8、分一个20G分区，挂载点为：/usr/local<br>9、“使用全部可用空间”分一个区，挂载点为：/var</p>
 <p>CentOS 6.7 用usb tool 安装后，报错，需修改U盘俩个目录下的文件名与后缀属性（packet/madiadata ）<br>centos unable to read package metadata this may be due to a missing repodata directory<br>I believe that i had this same issue and was able to solve it.<br>The files under the /repodata folder are missing their file extensions and are not matching their full names in the “TRANS.TBL” file, under this same dir.<br>Rename all the files to match what is in the “TRANS.TBL” file, then try the install over again.<br>Please let everyone know if this works for you.<br>In the past i would just put a URL in that pointed to the correct files on a server, i feel that most people take this workaround and that’s why it’s not as hot of an item as it should be. I hope this gets fixed in the .ISO.</p>

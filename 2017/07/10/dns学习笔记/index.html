@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="dns关于域名的常识www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）www.baidu.com.    才是一个域名【注意那个点，表示根域】 TLP(Top Level Domain) 递归查询，响应请求下一级查询的地址，DNS本身之间不提问迭代查询，yum install bindyum install bind-chroot">
+<meta name="description" content="这是一篇与DNS有关的文章">
 <meta name="keywords" content="协议,protocol">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dns学习笔记">
 <meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/2017/07/10/dns学习笔记/index.html">
 <meta property="og:site_name" content="行走在技术的道路上，目标高，精，尖！">
-<meta property="og:description" content="dns关于域名的常识www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）www.baidu.com.    才是一个域名【注意那个点，表示根域】 TLP(Top Level Domain) 递归查询，响应请求下一级查询的地址，DNS本身之间不提问迭代查询，yum install bindyum install bind-chroot">
-<meta property="og:updated_time" content="2017-07-10T07:10:38.668Z">
+<meta property="og:description" content="这是一篇与DNS有关的文章">
+<meta property="og:updated_time" content="2018-04-01T02:49:38.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dns学习笔记">
-<meta name="twitter:description" content="dns关于域名的常识www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）www.baidu.com.    才是一个域名【注意那个点，表示根域】 TLP(Top Level Domain) 递归查询，响应请求下一级查询的地址，DNS本身之间不提问迭代查询，yum install bindyum install bind-chroot">
+<meta name="twitter:description" content="这是一篇与DNS有关的文章">
 
 
 
@@ -349,6 +349,10 @@
           
 
           
+              <div class="post-description">
+                  这是一篇与DNS有关的文章
+              </div>
+          
 
         </div>
       </header>
@@ -362,7 +366,7 @@
       
         <h1 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h1><p>关于域名的常识<br>www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）<br>www.baidu.com.    才是一个域名【注意那个点，表示根域】</p>
 <p>TLP(Top Level Domain)</p>
-<p>递归查询，响应请求下一级查询的地址，DNS本身之间不提问<br>迭代查询，<br>yum install bind<br>yum install bind-chroot    #用于改变目录/var/named-&gt;/var/named/chroot/var/named,提高安全性<br>cd /var/named<br>cp -a data/<br>cp -a dynamic/<br>cp -a slaves/<br>cp -a named.ca named.empty named.localhost named.loopback /var/named/chroot/var/named/</p>
+<p>递归查询，响应请求下一级查询的地址，DNS本身之间不提问<br>迭代查询，<br><a id="more"></a><br>yum install bind<br>yum install bind-chroot    #用于改变目录/var/named-&gt;/var/named/chroot/var/named,提高安全性<br>cd /var/named<br>cp -a data/<br>cp -a dynamic/<br>cp -a slaves/<br>cp -a named.ca named.empty named.localhost named.loopback /var/named/chroot/var/named/</p>
 <p>关于权限<br>named下所有文件及目录用户组是named，文件所有者root,目录所有者named</p>
 <p>/var/named/chroot/var/named/下放正向解析的zone文件</p>
 <p>PTR PoinTeR,指向的缩写，反解到主机名</p>
