@@ -364,19 +364,210 @@
       
         
           
-          fcitx    中文输入法
+            <p>fcitx    中文输入法</p>
+<ul>
+<li>通配符，代表一个或多个任意字符<br>?    通配符，仅表示一个任意字符<br>ctrol+alt+t        #命令行终端快捷方式<br>Ctrl + Alt + F2     #X window切换到命令行模式</li>
+</ul>
+<p>/boot<br>/bin    执行命令<br>/sbin    重要系统执行命令<br>/dev<br>/etc<br>/srv    service<br>/var    variable<br>/opt    第三方协力程式<br>/usr unix software resource<br>/tmp<br>/proc    内存中的数据</p>
+<p>top参数<br>virt 是虚拟内存<br>res是常驻内存<br>shr是共享内存</p>
+<p>1）下面以80G硬盘为服务器做的分区和挂载点：（本例是在VM6.0中虚拟的80G硬盘，安装Red Hat Linux9.0时进行的分区和挂载点设置）<br>1、空闲的80G SCSI硬盘.</p>
+<p>2、先分一个1G分区，挂载点为：/<br>3、再分一个交换分区，是内存的1-2倍<br>4、分一个100M分区，挂载点为：/boot<br>5、分一个分区为1024M，挂载点为：/opt<br>6、分一个4000M分区，挂载点为：/tmp<br>7、分一个10G分区，挂载点为：/home<br>8、分一个20G分区，挂载点为：/usr/local<br>9、“使用全部可用空间”分一个区，挂载点为：/var</p>
+<p>CentOS 6.7 用usb tool 安装后，报错，需修改U盘俩个目录下的文件名与后缀属性（packet/madiadata ）<br>centos unable to read package metadata this may be due to a missing repodata directory<br>I believe that i had this same issue and was able to solve it.<br>The files under the /repodata folder are missing their file extensions and are not matching their full names in the “TRANS.TBL” file, under this same dir.<br>Rename all the files to match what is in the “TRANS.TBL” file, then try the install over again.<br>Please let everyone know if this works for you.<br>In the past i would just put a URL in that pointed to the correct files on a server, i feel that most people take this workaround and that’s why it’s not as hot of an item as it should be. I hope this gets fixed in the .ISO.</p>
+<p>linux绕过密码<br>敲击28次以上退格键可调出grub救援界面（rescue shell）<br>bug位于grub2的bootloader中</p>
+<p>====================通用常用命令=======================</p>
+<p>1，rmdir directoryname     #删除目录[空和非空文件夹]及子文件文件夹<br>   rm filename    #删除文件<br>   rm -r foldername    #递归删除文件夹，包括空文件<br>   rm -f filename    #无条件删除只读文件<br>   rm -f /        #强制删除root目录下所有内容（在.bashrc里添加alias<br>rm=’rm -i’执行前会提示）<br>   rm -rf *        #强制删除当前目录下的所有文件<br>   rm -rf filename     #强制删除文件或文件夹<br>   rm -rf .        #强制删除当前文件夹和子文件夹<br>   rmdir file</p>
+<p>2，mv         #重命名对文件mv a.txt b.txt,对目录mv a b，对跨目录则是移动mv<br>                 a.txt /root/b.txt<br>   mv flodername /dev/null    #清空flodername下的数据</p>
+<p>3,yum -y groupinstall chinese-support#Linux中文乱码解决方法，安装中文支持<br>4,rpm -qa|grep yum    #查看是否安装yum<br>5,rpm -e yum-fastestmirror-1.1.16-14.el5.centos.1    #卸载安装的yum<br>  rpm -e -nodeps yum<br>6,/etc/rc.d/init.d/nscd restart<br>  service nscd restart        #清空DNS缓存<br>7,ls -al | more<br>  ls -al | less        #ls分页显示<br>  ls -lnt | more     #ls按修改时间分页排列<br>8,tar -zxf filename.tar.gz    #解压缩安装包<br>  ./install<br>9,./    #代表当前目录，相对路径,如果没有这个就要写绝对路径<br>10,fdisk -l    #显示分区表信息<br>11,df -m    #MB显示硬盘信息<br>   df -hl    #查看磁盘剩余空间<br>   free -ml    #查看内存使用情况</p>
+<p>执行sysctl -w vm.drop_caches=3，清空缓存。<br>echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; swapoff -a &amp;&amp; swapon -a &amp;&amp; printf ‘\n%s\n’ ‘Ram-cache and Swap Cleared’</p>
+<p>12,su,sudo<br>su -    #切换至root用户及其环境下</p>
+<p>======危险命令===============================================<br>12,){:|:&amp;};:</p>
+<p>#一种fork炸弹，它定义一个叫“：”的函数，然后在前后台无限循环调用自己直到系统崩溃<br>13,任意命令 &gt; /dev/sda</p>
+<p>#执行任意命令并输出到/dev/sda。结果就是/dev/sda里的文件会被命令的输出内容替换。<br>14,下面的命令相当于rm –rf，它会藏在十六进制hex中。大家在不知情的情况下运行它，可能就会直接擦除掉整个root目录：<br>char esp[] <strong>attribute</strong> ((section(“.text”))) /<em> e.s.p<br>release </em>/<br>= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″<br>“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″<br>“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″<br>“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″<br>“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″<br>“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″<br>“\x6e\x2f\x73\x68\x00\x2d\x63\x00″<br>“cp -p /bin/sh /tmp/.beyond; chmod 4755<br>/tmp/.beyond;”;<br>15,ln-在文件之间创建链接<br>ln -s source_file softlink    #对文件建立软链接<br>ln -s source_directory softlink #对目录建立软链接<br>ln source_file hardlink        #对文件建立硬链接<br>软/硬链接的区别<br>软链接相当于windows的快捷方式<br>硬连接就像一个文件有多个文件名<br>16,查公网ip<br>curl ipinfo.io<br>curl cip.cc<br>telnet cip.cc<br>ftp cip.cc<br>links ipinfo.io<br>links canyouseeme.org</p>
+<p>===========The end============================================<br>====系统配置命令===================================</p>
+<p>1，忘记ROOT密码<br>  在grub引导菜单界面-&gt;按“e”-&gt;进入grub编辑模式-&gt;将光标移到kernek开头的那一行-&gt;在最后方输入“single”-&gt;按“Enter”-&gt;按“b”(有的可忽略)-&gt;键入passwd命令改密<br>2，时间修改</p>
+<p>#date MMDDhhmmYYYY    #修改系统时间MM:月份，DD：日期，hh:小时，mm:分钟，YYY年份</p>
+<p>#hwclock -r    #读取BIOS时</p>
+<p>#hwclock -w    #将系统时间写入BIOS</p>
+<p>hwclock –set –date=”12/30/17 14:55    #设置硬件时钟<br>hwclock –hctosys    #系统与硬件时钟同步<br>cat /etc/redhat-release    #查看centos系统版本<br>3，init 0    #=windows shutdown -s<br>   init 6    #=windows shutdown -r<br>3,ps -A    #列出所有进程<br>  ps -ef    #列出所有进程（更详细），ppid为父进程<br>  ps -aux | grep test    #<br>  top    #实时监控进程<br>  perf    #系统性能调优工具-linux瑞士军刀<br>4，kill -9 325    #干掉PID为325的进程<br>5，pkill -KILL -t pts/0    #强制将pts/0踢出<br>6，crontab -l    #查看自启动项目<br>   crontab -e    #编辑自启动条目<br>5，ssh<br>linux 终端下ssh远程linux<br>ssh username@ip<br>ssh -l admin 192.168.1.27        #ssh指定admin登录<br>ssh -l root -p 52014 192.168.1.25    #ssh指定root在52014口登录，修改过登录端口】</p>
+<p>/etc/ssh/sshd_config<br>/etc/ssh/ssh_config    #ssh配置文件<br>【/etc/inetd.conf，去掉ssh前的#，按ctrl+c，再输入exit保存退出】<br>【编辑/etc/rc.conf，添加一行sshd_enable=”YES”】<br>编辑/etc/ssh/sshd_config，</p>
+<p>port 22-&gt;port 52014    //改登陆端口为52014，[记得iptable要同步修改]<br>ListenAddress 192.168.30.254        //指定登录地址<br>Protocol 2        //使用的协议版本<br>PermitRootLogin yes<br>PasswordAuthentication yes    #</p>
+<p>#UsePAM yes    //使用系统PAM认证<br>PermitEmptyPasswords no    #不允许空密码<br>AllowUsers root        指定登陆用户【只能是系统已存在用户名】<br>启动SSHD服务，/etc/rc.d/sshd start</p>
+<p>ssh使用证书+短语|密钥对+短语登陆<br>用xshell-&gt;Tools-&gt;User Keys manager-&gt;Generater生成私钥id_rsa_2048，和公钥id_rsa_2048.pub<br>拷贝公钥到linux ~/.ssh/ 目录下<br>再<br>cat id_rsa_2048.pub &gt; authorized_keys<br>当然，如果是Linux对linux，则可<br>scp id_rsa_2048.pub root@192.168.168.11/~/.ssh/authorized_keys</p>
+<p>如果是在linux环境下，通过ssh-keygen -t rsa生成密钥对</p>
+<h1 id="ssh-keygen-t-ed25519-o-a-100-C-“Your-comment-here”"><a href="#ssh-keygen-t-ed25519-o-a-100-C-“Your-comment-here”" class="headerlink" title="ssh-keygen -t ed25519 -o -a 100 -C “Your comment here”"></a>ssh-keygen -t ed25519 -o -a 100 -C “Your comment here”</h1><h1 id="ssh-keygen-t-rsa-b-4096-o-a-100-C-“Your-comment-here”"><a href="#ssh-keygen-t-rsa-b-4096-o-a-100-C-“Your-comment-here”" class="headerlink" title="ssh-keygen -t rsa -b 4096 -o -a 100 -C “Your comment here”"></a>ssh-keygen -t rsa -b 4096 -o -a 100 -C “Your comment here”</h1><p>vi /etc/ssh/sshd_config<br>RSAAuthentication yes<br>PubkeyAuthentication yes<br>AuthorizedKeysFile     .ssh/authorized_keys<br>PasswordAuthentication no</p>
+<p>#如果要禁止密码登陆要这句，不可以直接注释此句,建议在确定密钥对可以登录后再禁止密码登陆</p>
+<p>注意~/.ssh的权限<br>拷贝公钥和私钥给要连接的客户登陆</p>
+<p>最后修改防火墙，放行端口，再重启防火墙</p>
+<p>6,Ctrl+D    #退出root<br>7,给登陆用户发消息<br>write 要通知的登陆的用户名 终端号<br>write user pts/3 回车然后写消息再回车，Ctrl+d离开</p>
+<p>wall 消息内容    #群发给所有登陆用户消息</p>
+<p>8,mtr 8.8.8.8    #类似于Windows的pathping<br>9,开启snmp,CactiEZ监控linux<br>1&gt;vi /etc/sysconfig/iptable    #编辑防火墙放行161口<br>-A INPUT -m state –state NEW -m udp -p udp –dport 161 -j ACCEPT<br>/etc/init.d/iptables restart    #重启防火墙<br>2&gt;yum -y install net-snmp    #安装net-snmp,如果没有安装<br>chkconfig snmpd on        #设置开机启动<br>service snmpd start         #启动snmpd<br>4&gt;vi /etc/snmp/snmpd.conf<br>sec.name              source        community<br>con2sec notconfigUser 192.168.1.253 systemtest    #systemtest为团体标示</p>
+<p>10,系统日志<br>/var/log/messages    #Linux常见的系统和服务错误信息<br>/var/log/lastlog    #记录最后一次成功登陆用户的时间ip等<br>/var/log/secure        #系统安全日志，用户登陆情况<br>/vat/log/btmp        #记录登陆失败用户的时间，IP等<br>/var/log/crom        #记录crond计划任务的执行情况<br>/var/log/~.bash.histry    #记录历史执行的命令（默认1000条）<br>history -c        #清楚历史命令记录<br>last -x</p>
+<p>#显示系统关闭，用户登陆和退出的历史(其实就是读取/var/log/secure 文件)<br>tail -f /var/log/messages    #实时显示messages日志内容，起监控效果<br>tail -n 100 -f    /var/log/messages    #实时显示messages日志前100行</p>
+<p>11,配置DNS<br>vim /etc/resolv.conf<br>12,FreeBSD-UNIX IP配置<br>ee /etc/rc.conf<br>ifconfig_eh0=”inet 192.168.1.1 netmask 255.255.255.0<br>ifconfig eh0 192.168.1.1 255.255.255.0<br>13，linux网络参数配置<br>    /etc/sysconfig/network-scripts/ifcfg-eth0    #IP配置文件<br>    /etc/resolv.conf    #DNS配置文件<br>    /etc/sysconfig/network    #配置主机名和默认网关</p>
+<h1 id="etc-sysconfig-network-scripts-ifcfg-eth0-static模板"><a href="#etc-sysconfig-network-scripts-ifcfg-eth0-static模板" class="headerlink" title="/etc/sysconfig/network-scripts/ifcfg-eth0 static模板"></a>/etc/sysconfig/network-scripts/ifcfg-eth0 static模板</h1><p>DEVICE=eth0<br>TYPE=Ethernet<br>UUID=ae6ca84b-4c6a-453f-b07b-56ef614e4e99<br>ONBOOT=yes<br>NM_CONTROLLED=yes<br>BOOTPROTO=none<br>DEFROUTE=yes<br>IPV4_FAILURE_FATAL=yes<br>IPV6INIT=no<br>NAME=”System eth0”<br>HWADDR=00:0C:29:8D:F1:0C<br>IPADDR=192.168.1.25<br>PREFIX=24<br>GATEWAY=192.168.1.1<br>DNS1=8.8.8.8</p>
+<h1 id="LAST-CONNECT-1455653005"><a href="#LAST-CONNECT-1455653005" class="headerlink" title="LAST_CONNECT=1455653005"></a>LAST_CONNECT=1455653005</h1><h1 id="etc-sysconfig-network-scripts-ifcfg-eth0-dhcp模板"><a href="#etc-sysconfig-network-scripts-ifcfg-eth0-dhcp模板" class="headerlink" title="/etc/sysconfig/network-scripts/ifcfg-eth0 dhcp模板"></a>/etc/sysconfig/network-scripts/ifcfg-eth0 dhcp模板</h1><p>DEVICE=eth0<br>TYPE=Ethernet<br>ONBOOT=yes<br>BOOTPROTO=dhcp<br>DEFROUTE=yes<br>PEERDNS=no        #不使用DHCP分配的DNS<br>UUID=5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03</p>
+<h1 id="HWADDR-00-0c-29-8d-f1-0c"><a href="#HWADDR-00-0c-29-8d-f1-0c" class="headerlink" title="HWADDR=00:0c:29:8d:f1:0c"></a>HWADDR=00:0c:29:8d:f1:0c</h1><p>/etc/sysconnfig/network模板<br>NETWORKING=yes<br>NETWORKING_IPV6=no<br>GATEWAY=192.168.106.1<br>HOSTNAME=Dialog</p>
+<p>ifdown eth0    #关闭eth0接口<br>ifup eth0</p>
+<p>#开启eth0接口，如果遇到ip地址配好后网络无连接，则用此命令激活接口<br>watch ifconfig et0    #查看网卡0实时流量<br>service network start/stop/restart    #启动/停止/重启网络服务<br>14,/var/www/html    #存放网站目录<br>15，复制<br>文件到目录<br>cp -i file dir1/    或者cp file1 dir1<br>覆盖前，确认<br>cp -r dir1/ dir2/    或者cp -r dir1/<em>.</em> dir2        -r 是递归目录<br>cp -rf dir1/ dir2/<br>cp /www/web/ /var/www/    #目录拷贝<br>cp -r dir1/. dir2    #拷贝目录下所有文件及目录到目录<br>cp file1 file    #覆盖文件会询问要输入y确认<br>cp -p filename1 filename2    #替换并保持源替换文件的权限（filename1）权限</p>
+<p>mkdir    #新建目录<br>useradd oracle –g oinstall –G dba –d /home/oracle –p ora123<br>系统将创建一个用户 oracle oracle 用户的首要组为oinstall ，次要组为dba，Home 目录为/home/oracle ，密码为ora123。</p>
+<p>scp<br>====复制文件<br>【scp local_file remote_username@remote_ip:/remote_folder/remote_filename</p>
+<p>#复制本地文件到远端指定目录和文件名,不定义远端文件名则为原文件名】<br>【scp remote_username@remote_ip:remote_folder/remote_file local_folder/local_filename    #复制远端文件到本地指定的目录指定的文件名】<br>scp local_file remote_username@remote_ip:remote_folder    #指定远端用户名和目录，文件名不变<br>scp local_file remote_ip:remote_folder    #指定远端目录，需要验证用户名和密码<br>====复制文件夹<br>【scp -r local_folder remote_username@remote_ip:remote_folder    #复制本地文件夹到远端】<br>【scp -r remote_username@remote_ip:remote_folder local_folder    #复制远端文件夹到本地】<br>scp -r local_folder remote_username@remote_ip:remote_folder<br>scp -P 4588 -v root@/<br>scp /home/daisy/full.tar.gz root@172.19.2.75:/home/root    #把本地tar.gz复制到远端<br>scp root@172.19.2.75:/home/root/full.tar.gz home/daisy/full.tar.gz    #把远端tar.gz复制到本地</p>
+<p>scp -l 100 remote_username@remote_ip:remote_folder/remote_file local_folder/local_filename    #限速100kbit/s下载远端文件</p>
+<p>16,netstat -apn    #查看服务和端口<br>    netstat -an | grep LISTEN    #debain查看监听的开启的端口<br>    已安装的程序及服务名称可以到/etc/init.d/目录下去查看<br>   netstat -atunp</p>
+<p>16,find -name ‘<em>vnc</em>‘    #当前目录查找包含VNC的文件<br>   find    /   -amin    -10     # 查找在系统中最后10分钟访问的文件<br>find    /   -atime   -2        # 查找在系统中最后48小时访问的文件<br>find    /   -empty             # 查找在系统中为空的文件或者文件夹<br>find    /   -group   cat        # 查找在系统中属于 groupcat的文件<br>find    /   -mmin   -5         # 查找在系统中最后5分钟里修改过的文件<br>find    /   -mtime   -1       #查找在系统中最后24小时里修改过的文件<br>find / -mtime -1 |xargs rm -rf    #找出最后24小时里修改过的文件再删除<br>find / -name “*.txt”    #查找出/目录下所有.txt结尾的文件<br>whereis<br>17，yum list installed    #查看已安装的程序<br>    yum list installed | grep vnc    #查看是否有安装vnc<br>    yum remove vnc-server.i386        #卸载旧的vnc<br>18，yum<br>yum 的配置文件分为两部分：main 和repository<br>    main 部分定义了全局配置选项，整个yum 配置文件应该只有一个main。常位于/etc/yum.conf 中。<br>    repository 部分定义了每个源/服务器的具体配置，可以有一到多个。常位于/etc/yum.repo.d 目录下的各文件中。<br>    yum -y install program’s name    #-y是不询问<br>19,locate ifcfg    /定位文件名含“ifcfg”<br>   find / -name network    #从根目录开始找文件名问network的文件<br>    =whereis    for debain-linux</p>
+<h1 id="20-iptables"><a href="#20-iptables" class="headerlink" title="20,iptables"></a>20,iptables</h1><p>input</p>
+<h1 id="A-INPUT-p-tcp-m-tcp-s-202-131-87-201-32-–dport-22-j-ACCEPT"><a href="#A-INPUT-p-tcp-m-tcp-s-202-131-87-201-32-–dport-22-j-ACCEPT" class="headerlink" title="-A INPUT -p tcp -m tcp -s 202.131.87.201/32 –dport 22 -j ACCEPT"></a>-A INPUT -p tcp -m tcp -s 202.131.87.201/32 –dport 22 -j ACCEPT</h1><p>======================<br>output<br>iptables -A OUTPUT -d 192.168.168.1 -j DROP</p>
+<h1 id="iptables-A-OUTPUT-d-192-168-168-0-24-j-REJECT"><a href="#iptables-A-OUTPUT-d-192-168-168-0-24-j-REJECT" class="headerlink" title="iptables -A OUTPUT -d 192.168.168.0/24 -j REJECT"></a>iptables -A OUTPUT -d 192.168.168.0/24 -j REJECT</h1><p>端口映射<br>debain<br>iptables -t nat -A PREROUTING -d 192.168.106.1 -p tcp –dport 80 -j DNAT<br>–to-destion 192.168.106.3:80<br>iptables -t nat -A POSTROUTING -d 192.168.106.3 -p tcp –dport 80<br>iptables -t nat –list    #检查配置的转发情况</p>
+<p>postrouting路由转发配置<br>iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -j SNAT –to-source 172.16.100.106    #将10.0段路由至本地100.106<br>cat /proc/sys/net/ipv4/ip_forward    #检查网卡路由转发是否开启<br>echo 1 &gt; /proc/sys/net/ipv4/ip_forward    #开启网卡转发功能</p>
+<p>本机端口转发到他机<br>[root@localhost]#:iptables -t nat -A PREROUTING -p tcp -i eth0 –dport 80 -j DNAT –to 192.168.168.35:80<br>[root@localhost]#:iptables -t nat -A POSTROUTING -j MASQUERADE<br>[root@localhost]#:service iptables save<br>[root@localhost]#:service iptables restart</p>
+<p>21,修改yum源<br>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup    #备份原有的镜像源</p>
+<p>cd /etc/yum.repos.d/<br>wget mirrors.163.com/.help/CentOS5-Base-163.repo<br>yum clean all<br>yum makecache</p>
+<p>例如：163镜像<br><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="external">http://mirrors.163.com/.help/centos.html</a>    #先上网站找到对应版本的repo</p>
+<p>添加aliyun源<br>cd /etc/yum.repos.d<br>vim aliyun.repo<br>[aliyun]<br>name=Centos epel<br>baseurl=<a href="http://mirrors.aliyun.com/epel/$releasever/$basearch/" target="_blank" rel="external">http://mirrors.aliyun.com/epel/$releasever/$basearch/</a><br>gpgcheck=0</p>
+<p>yum clean all<br>yum makecache</p>
+<p>vi /etc/apt/sources.list    #修改源</p>
+<p>替换Base源为aliyun源<br>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak<br>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="external">http://mirrors.aliyun.com/repo/Centos-5.repo</a><br>                            【CentOS 5】<br>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="external">http://mirrors.aliyun.com/repo/Centos-6.repo</a><br>                            【CentOS 6】</p>
+<p>22，新增硬盘<br>fdisk -l    #查看新增硬盘,这里以sdb为例<br>fdisk /dev/sdb    #进行分区<br>n        #创建新分区<br>p        #主分区<br>1        #块数<br>Enter        #<br>w        #保存修改<br>出现/dev/sdb1<br>mkfs -t ext3 /dev/sdb1    #格式化sdb1<br>df -m        #查看挂载的目录，当然也可以mount /dev/sdb1 /mnt    #指定挂载目录<br>vi /etc/fstab    #设置开机自动挂载<br>23,lsof -i    #查看端口占用情况<br>   lsof -i:80    #查看80端口占用情况<br>telnet x.x.x.x 22    #检测TCP端口<br>nc -vuz x.x.x.x 500    #检测UDP端口<br>24,chkconfig<br>level：指定系统服务要在哪一个执行等级中开启或关闭<br>0:关机；<br>1:单用户模式；<br>2:无网络连接的多用户命令行模式；<br>3:有网络连接的多用户命令模式<br>4:不可用；<br>5:带图形界面的多用户模式；<br>6：重新启动；<br>chkconfig –list    #列出所有的系统服务<br>chkconfig –list httpd    #检查httpd服务的启动<br>chkconfig –add httpd    #增加httpd服务<br>chkconfig –del httpd    #删除httpd服务<br>chkconfig –level httpd 2345 on    #设置httpd在2345运行级别情况下开启；<br>25，</p>
+<p>26,终端乱码<br>locale    #查看系统安装的语言包<br>1、系统必须安装中文语言包才行</p>
+<h1 id="yum-y-groupinstall-chinese-support"><a href="#yum-y-groupinstall-chinese-support" class="headerlink" title="yum -y groupinstall chinese-support"></a>yum -y groupinstall chinese-support</h1><p>2、仅仅有语言包还不行，我们得设置相应的字符集</p>
+<p>临时生效<br>export LANG=”zh_CN.UTF-8”    # 设置为中文<br>export LANG=”en_US.UTF-8”    # 设置为英文 ,export LANG=C</p>
+<p>永久生效，<br>vim /etc/sysconfig/i18n<br>LANG=”zh_CN.UTF-8”</p>
+<p>或者<br>vim /etc/profile    #添加如下一行<br>export LANG=”zh_CN.UTF-8”<br>. /etc/profile    #重新载入 </p>
+<p>查看当前的字符<br>echo $LANG    #查看当前的字符<br>如果还不行，可以改终端软件securecrt,xshell的编码方式为当前系统的编码方式</p>
+<p>27,alias 别名设置<br>配置用户alias<br>unalias cp        #当前shell使cpalias失效,新shell恢复<br>vim /etc/bashrc<br>vim /etc/profile<br>cd ~<br>vim .bashrc<br>source ./bashrc    #使配置生效,如果无效可以重连shell</p>
+<p>28,crontab<br>crontab文件的格式：M H D m d cmd.<br>M: 分钟（0-59）。<br>H：小时（0-23）。<br>D：天（1-31）。<br>m: 月（1-12）。<br>d: 一星期内的天（0~6，0为星期天）。<br>cmd要运行的程序</p>
+<p>45 4 1,10,22 <em> </em> /usr/local/etc/rc.d/lighttpd restart<br>上面的例子表示每月1、10、22日的4 : 45重启apache。<br>10 1 <em> </em> 6,0 /usr/local/etc/rc.d/lighttpd restart<br>上面的例子表示每周六、周日的1 : 10重启apache。<br>0,30 18-23 <em> </em> <em> /usr/local/etc/rc.d/lighttpd restart<br>上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。<br>0 </em>/1 <em> </em> <em> /usr/local/etc/rc.d/lighttpd restart<br>每一小时重启apache<br>0 23-7/1 </em> <em> </em> /usr/local/etc/rc.d/lighttpd restart<br>晚上11点到早上7点之间，每隔一小时重启apache<br>crontab -e    #编辑crontab</p>
+<p>29,du    显示空间占用情况<br>du [option]<br>    -h:以人类便读的方式显示KB,MB,GB<br>    -a:显示目录及子目录的大小<br>    -s:不显示子目录<br>du -sh    #显示当前目录大小<br>du -sh var/www/    #显示指定目录大小</p>
+<p>df -h    #查看磁盘使用情况</p>
+<p>30,chattr<br>chattr -R -i 目录    #给指定目录及子目录解锁<br>chattr -R +i 目录    #给指定的目录及子目录加锁<br>lsattr            #查看隐藏属性 </p>
+<p>31,awk<br>awk的工作流程：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”<br>awk<br>cat /etc/passwd |awk  -F ‘:’  ‘{print $1}’<br>awk ‘END{print NR}’ filename    #取文件的行数<br>32,环境变量<br>常见的环境变量<br>　　PATH：决定了shell将到哪些目录中寻找命令或程序<br>　　HOME：当前用户主目录<br>　　MAIL：是指当前用户的邮件存放目录。<br>　　SHELL：是指当前用户用的是哪种Shell。<br>　　HISTSIZE：是指保存历史命令记录的条数。<br>　　LOGNAME：是指当前用户的登录名。<br>　　HOSTNAME：是指主机名称<br>    CLASSPAHT：指定类搜索路径<br>    JAVA_HOME：jdk的安装目录<br>java，tomcat环境变量配置</p>
+<p>方法一：修改.bash_profile文件（在用户的家目录下）环境变量，只对当前用户有用(推荐)<br>cd ~<br>vim .bash_profile<br>export JAVA_HOME=/usr/java/jdk1.8.0_131<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>export TOMCAT_HOME=/opt/tomcat</p>
+<p>最后source .bash_profile</p>
+<p>方法二：（不推荐，对所有用户，危险）<br>vim /etc/profile    在末尾如下添加<br>export JAVA_HOME=/usr/java/jdk1.8.0_131<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>export TOMCAT_HOME=/opt/tomcat</p>
+<p>source /etc/profile</p>
+<p>方法三：(易维护，对所有用户，危险，不推荐)<br>cd /etc/profile.d<br>vim java.sh<br>export JAVA_HOME=/usr/java/jdk1.8.0_131    或者export JAVA_HOME=/usr/java/latest<br>export PATH=$PATH:$JAVA_HOME/bin<br>vim tomcat.sh<br>export TOMCAT_HOME=/opt/tomcat<br>./etc/profile.d/java.sh<br>./etc/profile.d/tomcat.sh    #执行一下sh</p>
+<p>33,关于网络监控<br>   yum install iftop iftop报告每个连接所使用的带宽<br>   yum install nload 实时看总带宽</p>
+<p>=============程序的安装与卸载===================<br>rpm安装与卸载<br>rpm -rebuild <em>.src.rpm<br>cd /usr/src/dist/RPMS<br>rpm -ivh </em>.rpm</p>
+<p>rpm卸载<br>rpm -qa|grep softname<em>    #确定安装的软件版本<br>rpm -ql softname</em>    #程序软件安装目录<br>rpm -e softname_version    #softname_version是上面查询到的完整的名称<br>rpm -e|grep gnome<em>    #卸载有些程序要加</em>用模式匹配</p>
+<p>rpm -e softname_version –nodeps    #不考虑依赖关系</p>
+<p>源码编译安装应用程序<br>1&gt;tar -xzvf xx.tar.gz<br>2&gt;cd xx<br>3&gt;./configure<br>    【./configure –prefix=/opt/xx  指定安装目录】<br>4&gt;make<br>5&gt;make install<br>6&gt;make clean<br>26,useradd 用户名    #新建用户<br>   groupadd 组名    #新建组<br>   usermod -G 组名 用户名    #给用户添加工作组<br>   passwd [parameter] 用户名    #改密码<br>   parameter:    -I    禁用账户<br>        -u    口令解锁<br>        -d    无口令<br>        -f    下次登陆修改口令</p>
+<p>====about tool=======================================<br>1,vi<br>:set nu    #显示行号<br>gg/1003gg/:n    #跳到开头/跳到1003行/跳到n行<br>:set encoding=utf-8    #设置编码方式<br>x,X    #x向后删除一个字符，X向前删除一个字符<br>dd    #删除所在行<br>yy    #复制所在行<br>p,P    #p粘贴到光标下一行，P粘贴到上一行<br>2，Tigernvc</p>
+<p>#rpm -qa | grep vnc    #检查是否有安装vnc server<br> rpm -ivh program’s name<br> rpm -e 列出的程序名称    #卸载某程序</p>
+<p>#yum groupinstall “X Window System” “Desktop”</p>
+<p>#yum install tigervnc</p>
+<p>#yum install tigervnc-server    #安装vnc</p>
+<p>#vncserver    #启动vncserver</p>
+<p>#vncpasswd    #设置vnc访问密码</p>
+<p>#netstat -tulnp | grep X    #查看vnc所使用的端口</p>
+<p>#tcp 0 0 0.0.0.0:5901 0.0.0.0:* LISTEN 14319/Xvnc</p>
+<p>#tcp 0 0 0.0.0.0:6001 0.0.0.0:* LISTEN 14319/Xvnc</p>
+<p>#tcp 0 0 :::6001 :::* LISTEN 14319/Xvnc            #开启端口</p>
+<p>#servicee ipstables stop</p>
+<p>#vim /etc/sysconfig/iptables    #编辑iptables<br>-A INPUT -i eth0 -m state –state NEW -m tcp -p tcp –dport 5901 -m mark –mark 0x64 -j ACCEPT<br>-A INPUT -i eth0 -m state –state NEW -m tcp -p tcp –dport 6001 -m mark –mark 0x65 -j ACCEPT</p>
+<p>贴一个做了1891-&gt;5901,1991-&gt;6001的iptables<br>[root@myweb ~]# vim /etc/sysconfig/iptables</p>
+<h1 id="Firewall-configuration-written-by-system-config-firewall"><a href="#Firewall-configuration-written-by-system-config-firewall" class="headerlink" title="Firewall configuration written by system-config-firewall"></a>Firewall configuration written by system-config-firewall</h1><h1 id="Manual-customization-of-this-file-is-not-recommended"><a href="#Manual-customization-of-this-file-is-not-recommended" class="headerlink" title="Manual customization of this file is not recommended."></a>Manual customization of this file is not recommended.</h1><p><em>mangle<br>:PREROUTING ACCEPT [0:0]<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>:POSTROUTING ACCEPT [0:0]<br>-A PREROUTING -i eth0 -p tcp –dport 1991 -j MARK –set-mark 0x64<br>-A PREROUTING -i eth0 -p tcp –dport 1891 -j MARK –set-mark 0x65<br>COMMIT
+</em>nat<br>:PREROUTING ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>:POSTROUTING ACCEPT [0:0]<br>-A PREROUTING -i eth0 -p tcp –dport 1991 -m mark –mark 0x64 -j DNAT –to-destination :6001<br>-A PREROUTING -i eth0 -p tcp –dport 1891 -m mark –mark 0x65 -j DNAT –to-destination :5901<br>COMMIT<br>*filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6001 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 5901 -j ACCEPT</p>
+<p>#vim /etc/sysconfig/vncservers    #编辑VNC配置文件<br>VNCSERVERS=”1:root”<br>VNCSERVERARGS[1]=”-geometry 1024x768 -alwaysshared -depth 24”    #x是小写字母x，-alwaysshared 是多用户同时登陆</p>
+<p>#service vncserver restart    #重启vncserver</p>
+<h1 id="chkconfig-vncserver-on-配置子启动"><a href="#chkconfig-vncserver-on-配置子启动" class="headerlink" title="chkconfig vncserver on    #配置子启动"></a>chkconfig vncserver on    #配置子启动</h1><p>vncserver -kil :n    #关闭vncserver<br>xauth: (stdin):1:  bad display name “Dialog:4” in “add” command</p>
+<p>#如有所示报错，则应将/etc/hosts中的host名改成与主机名一致<br>cat /root/.vnc/localhost.log    #vncserver启动后，可以通过查看vnc<br>log文件查看监听的端口</p>
+<p>3,sftp<br>linux 终端下sftp远端<br>sftp username@ip<br>  put -r 目录名<br>  put -r 目录名/.    </p>
+<pre><code>#上传目录所有文件含目录本身
+</code></pre><p>  put -r 目录名/*    #上传目录内所有文件，不含目录本身<br>  get -r .    #下载当前目录所有，含目录<br>        【注意当前登录用户没有所在目录权限时目录或文件编辑受限，拒绝            访问】<br>  lcd    #local cd<br>  lpwd    #local pwd<br>  cd    #remote host cd<br>  pwd    #remote host pwd</p>
+<p>4,用nmap检测一下目标网站的系统服务和一些端口banner的信息。</p>
+<p>Nmap -v -sT -sV -O -P0 -oX test.xml <em>*</em>.kr<br>nmap -T4 -A targetip    #全面扫描<br>nmap -T4 -sn targetip    #主机发现<br>nmap -T4 targetip    #端口扫描<br>nmap -T4 -sV targetip    #服务扫描<br>nmap -T4 -0 targetip    #操作系统扫描<br>nmap -sP -PI -PT 202.131.84.1/24    #扫描84段的主机存活</p>
+<p>5,find -name ‘<em>vnc</em>‘    #查找当前目录下所有包含‘vnc’的文件</p>
+<h1 id="6，cryptsetup磁盘加密"><a href="#6，cryptsetup磁盘加密" class="headerlink" title="6，cryptsetup磁盘加密"></a>6，cryptsetup磁盘加密</h1><p>cryptsetup luksFormat /dev/sdb1    #设置加密分区，注意开始前要先umount<br>cryptsetup luksOpen /dev/sdb1 disk1    #将分区映射到/dev/mapper/disk1<br>mkfs.ext4 /dev/mapper/disk1    #格式化加密分区<br>mount /dev/mapper/disk1 /mnt/luks    #在/mnt/luks挂载加密分区<br>df -m    #查看挂载情况<br>umount /dev/mapper/disk1    #卸载加密分区<br>cryptsetup luskClose /dev/mapper/disk1    #关闭加密分区<br>vi /etc/crypttab           分区加密的配置文件<br>disk1   /dev/sdb1       /root/key（如果这里写none的话，当系统启动时在读取分区时候，会一直停在那，等待输入密码）<br>echo -n “123” &gt; /root/key            生成密码文件<br>chmod 700 /root/key                   修改权限<br>cryptsetup luksAddKey /dev/sdb1 /root/key  添加口令到/dev/sdb1中<br>cat /etc/crypttab<br>disk1   /dev/sdb1       /root/key<br>vi /etc/fstab  自动挂载文件<br>/dev/mapper/disk1       /mnt/luks               ext4    defaults        0 0</p>
+<h1 id="mount-–a-重新挂载-etc-fstab里的内容，如果报错的话就需要重启系统"><a href="#mount-–a-重新挂载-etc-fstab里的内容，如果报错的话就需要重启系统" class="headerlink" title="  mount –a 重新挂载/etc/fstab里的内容，如果报错的话就需要重启系统"></a>  mount –a 重新挂载/etc/fstab里的内容，如果报错的话就需要重启系统</h1><p>7,screen<br>attached 附加的 detached 分离的<br>screen -S 作业名称    #新建一个作业<br>screen -ls        #显示所有screen的作业<br>screen -r 作业名称    #回到指定作业session<br>screen -d 作业名称    #detach分离指定的session<br>screen -d -r 作业名称    #分离当前session返回到指定session<br>Ctrl+a+d</p>
+<p>#detach,离开当前session回到没进screen时的状态，当前session保持执行，即使logout也不会中断。<br>exit    #离开结束当前screen<br>Ctrl+a+k        #杀死当前session,并杀死与窗口同时运行的所有进程</p>
+<p>==============================<br>8,tar<br>  tar -parameter file/dictory<br>[parameter]:<br>    -c:打包 compress<br>    -x:解包<br>    -v：输出处理过程中相关信息<br>    -t:不解压先只列出压缩包列表<br>    -f:<br>    -z: gzip属性<br>    -j:bzip2属性<br>    -p:preserve permissions<br>    -C:解压缩到指定的目录</p>
+<p>tar -czvf my.tar filename    #gzip打包压缩文件filename<br>tar -cvf tartest.tar ./* –exclude x1 –exclude x2</p>
+<pre><code>#tar打包当前目录下的除x1,x2的所有文件
+</code></pre><p>tar -czvf my.tar filename1 filename2    #打包gzip压缩多个文件<br>tar -czvf my.tar dirctory    #打包gzip压缩单个目录</p>
+<p>tar -czvf - filename | openssl des3 -d | dd of=filename.des3<br>tar -czvf - filename | openssl des3 -salt -k password | dd of=filename.des3</p>
+<p>#加密打包，密码是password<br>tar -xzvf my.tar    #解包到当前目录<br>tar -xzvf my.tar.gz -C /home/user    #解包my.tar.gz到/home/user<br>dd if=filename.des3 | openssl des3 -d -k password | tar -xzvf -</p>
+<p>#解密压缩包password是要输入的之前加密用的密码<br>dd if=test.des3 |openssl des3 -d -k Tvb3Ring2014##|tar -xzvf -</p>
+<p>zip<br>zip加密压缩<br>zip -re filename.zip filename<br>unzip filename.zip<br>zip -rP password filename.zip filename<br>zip -P password filename.zip </p>
+<p>curl,split=======<br>大文件分割<br>curl –range 0-19999999 -o filename-part1<br>crul –range 20000000- -o filename-part2 </p>
+<p>split -b 20m filename filename.part<br>example:<br>split -b 20m test.tar.gz test.tar.gz.part</p>
+<p>合并<br>linux<br>cat filename-part<em> &gt; root.tar.gz<br>windows<br>新建文件夹，然后将要合并的文件移到新建文件夹下（主要是后缀不同，无法通配，所以新建文件夹比较方便）<br>copy /b </em>.* root.tar.gz    </p>
+<p>md5sum filename    #md5sunm校验md5,如果md5不一致，一定是有文件被更改，可能是遗漏或丢失</p>
+<p>ftp server=====<br>ps -ef|grep vsftpd<br>yum install vsftp -y<br>vim /etc/vsftpd/vsftpd.conf<br>anonymous_enable=NO<br>chkconfig –list<br>chkconfig –level 35 vsftpd on<br>useradd ftp<br>passwd ftp2017<br>service vsftpd start<br>/etc/rc.d/init.d/vsftpd restart</p>
+<p>============================</p>
+<h1 id="7-apache"><a href="#7-apache" class="headerlink" title="7,apache"></a>7,apache</h1><p>系统默认安装的apache主配置文件：/etc/httpd/conf/httpd.conf<br>默认站点目录：/var/www/html<br>vim vhost/<em>**</em>.com.conf</p>
+<p><virtualhost *:80=""><br>DocumentRoot /var/www/html<br>ServerName <strong>*</strong>.com    #域名<br>ServerAlias www.<strong>*</strong>.com    #二级域名<br></virtualhost></p>
+<directory var="" www="" html="">    #网站绝对路径<br>    Options FollowSymLinks<br>    AllowOverride all    #重定向<br>    Order allow,deny<br>    Allow from all<br></directory>
 
-通配符，代表一个或多个任意字符?    通配符，仅表示一个任意字符ctrol+alt+t        #命令行终端快捷方式Ctrl + Alt + F2     #X window切换到命令行模式
+<p>一台主机可以多apache http web服务，放不同目录，然后去目录下启动<br>关于http启动指定配置文件的方法<br>/opt/adobe/ams/Apache2.4/bin/httpd -f ./conf/httpd.conf -d /opt/adobe/ams/Apache2.4 -k start</p>
+<p>============================</p>
+<h1 id="8-flash-media-server-fms"><a href="#8-flash-media-server-fms" class="headerlink" title="8,flash media server-fms"></a>8,flash media server-fms</h1><p>./fmsmgr server fms restart    #重启FMS<br>./fmsmgr adminserver restart    #重启admin server<br>目录，文件说明=====<br>/opt/adobe/fms/webroot/swfs/adobedemoplyaer_pc.swf    #播放器<br>/opt/adobe/fms/webroot/swfs/fms_adminConsole.swf    #fms的控制管理界面<br>/opt/adobe/fms/webroot/swfs/LiveSample.swf    #直播流测试工具=====<br>/opt/adobe/fms/conf/fms.ini/<br>fms配置文件，是各层xml（Server.xml,Adaptor.xml,Vhost.xmlApplication.xml,Logger.xml,User.xml）配置文件中关键部分提取<br>实体======<br>/opt/adobe/fms/applications/live<br>/opt/adobe/fms/applications/livepkgr</p>
+<p>修改fms自带apache端口<br>vi /opt/adobe/fms/conf/httpd.conf<br>Listen 80-&gt;Listen 8080</p>
+<p>============================</p>
+<p>=====================</p>
+<h1 id="9-nginx"><a href="#9-nginx" class="headerlink" title="9,nginx"></a>9,nginx</h1><p>nginx的源码安装<br>yum -y install gcc gcc-c++ make libtool zlib zlib-devel openssl openssl-devel pcre pcre-devel    #安装缺少的依赖包<br>cd /usr/local/src<br>wget nginx.org/download/nginx-1.12.0.tar.gz    #下载nginx<br>mkdir /usr/local/nginx-1.12.0<br>tar -xzvf nginx-1.12.0.tar.gz<br>cd nginx-1.12.0<br>./configure –prefix=/usr/local/nginx-1.12.0<br>make<br>make install<br>groupadd www    #添加组<br>useradd -g www www -s /bin/false    #添加用户<br>cd /usr/local/nginx-1.12.0<br>./sbin/nginx -t    #测试配置文件是否正确</p>
+<p>========end=============</p>
+<p>=====================</p>
+<h1 id="10-mysql"><a href="#10-mysql" class="headerlink" title="10,mysql"></a>10,mysql</h1><p>/etc/rc.d/init.d/mysqld start<br>netstat -tulnp|grep 3306</p>
+<p>========end============</p>
+<p>====================</p>
+<h1 id="11-lamp环境"><a href="#11-lamp环境" class="headerlink" title="11,lamp环境"></a>11,lamp环境</h1><p>yum -y install httpd<br>chkconfig httpd on    #开机自启<br>yum -y install httpd-manual mod_ssl mod_per mod_auth_mysql    #<br>安装apache的一些扩展<br>yum -y install mysql mysql-server mysql-devel<br>chkconfig mysqld on<br>yum -y install php php-mysql    #PHP支持mysql模块<br>yum -y install gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap</p>
+<p>vi /etc/httpd/conf/httpd.conf</p>
+<directory var="" www="" 126tyc=""><br>    Options FollowSymLinks<br>    AllowOverride all<br>    Order allow,deny<br>    Allow from all<br></directory><br><br><br>vi /etc/httpd/conf/vhost/126tyc.com.conf<br><virtualhost *:80=""><br>DocumentRoot /var/www/126tyc<br>ServerName 126tyc.com<br>ServerAlias www.126tyc.com<br></virtualhost><br><directory var="" www="" 126tyc=""><br>    Options FollowSymLinks<br>    AllowOverrride all<br>    Order allow,deny<br>    Allow from all<br></directory>
 
-/boot/bin    执行命令/sbin    重要系统执行命
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/27/linux学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>关闭SELINUX<br>vi /etc/selinux/config</p>
+<p>#SELINUX=enforcing #注释掉</p>
+<p>#SELINUXTYPE=targeted #注释掉<br>SELINUX=disabled #增加<br>:wq #保存，关闭<br>shutdown -r now #重启系统</p>
+<p>发布网站要修改网站目录及子目录权限<br>chmod -R 755 126tyc<br>chown -R apache:apache 126tyc</p>
+<p>=============</p>
+<h1 id="12-lnmp环境"><a href="#12-lnmp环境" class="headerlink" title="12,lnmp环境"></a>12,lnmp环境</h1><p>监控总体带宽使用――nload、bmon、slurm、bwm-ng、cbm、speedometer和netload监控总体带宽使用（批量式输出）――vnstat、ifstat、dstat和collectl每个套接字连接的带宽使用――iftop、iptraf、tcptrack、pktstat、netwatch和trafshow每个进程的带宽使用――nethogs</p>
+<p>作者：宏宏<br>链接：<a href="https://www.zhihu.com/question/19862245/answer/121624101" target="_blank" rel="external">https://www.zhihu.com/question/19862245/answer/121624101</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>=======</p>
+<h1 id="13-php-fpm"><a href="#13-php-fpm" class="headerlink" title="13,php-fpm"></a>13,php-fpm</h1><p>PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的。 　　<br>PHP-FPM其实是PHP源代码的一个补丁，旨在将FastCGI进程管理整合进PHP包中。必须将它patch到你的PHP源代码中，在编译安装PHP后才可以使用。<br>原理：</p>
+<ol>
+<li>Web服务器启动时，载入FastCGI进程管理器；</li>
+<li>FastCGI进程管理器初始化，启动多个CGI解释器进程(PHP-CGI)并等待来自Web服务器的连接；</li>
+<li>当客户端请求到达Web服务器时，FastCGI进程管理器选择并连接到一个CGI解释器，Web服务器将CGI环境变量和标准输入发送到FastCGI子进程PHP-CGI。</li>
+<li>FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回给Web服务器。当FastCGI子进程关闭连接时，请求便告处理完成。FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web服务器中)的下一个连接。而在CGI模式中，PHP-CGI在此便退出了。<br>在上述情况中，可以想象CGI通常有多慢，每一个Web请求PHP都必须重新解析php.ini、重新载入全部扩展，并重初始化全部数据结构。而使用FastCGI，所有这些都只在进程启动时发生一次。另外，数据库持久连接可以工作。<br>NOTE:<br>FastCGI的主要优点是把动态语言和HTTP Server分离开来，所以Nginx与PHP/PHP-FPM经常被部署在不同的服务器上，以分担前端Nginx服务器的压力，使Nginx专一处理静态请求和转发动态请求，而PHP/PHP-FPM服务器专一解析PHP动态请求。</li>
+</ol>
+<p>kill -INT ‘cat /usr/local/php/var/run/php-fpm.pid’    #php-fpm关闭<br>kill -USR2 ‘cat /usr/local/php/var/run/php-fpm.pid’    #php-fpm重启<br>killall php-fpm<br>/usr/local/php/sbin/php-fpm &amp;</p>
+<p>=========================</p>
+<h1 id="14-rsync"><a href="#14-rsync" class="headerlink" title="14,rsync"></a>14,rsync</h1><p>一，安装<br>编辑<br>Ubuntu安装: sudo apt-get install rsync<br>RedHat: yum install rsync<br>编译安装<br>rsync的编译安装非常简单，只需要以下简单的几步：<br>[root@www rsync-2.4.6]# ./configure<br>[root@www rsync-2.4.6]# make<br>[root@www rsync-2.4.6]# make install<br>但是需要注意的是必须在服务器A和B上都安装rsync，其中A服务器上是以服务器模式运行rsync，而B上则以客户端方式运行rsync。这样在web服务器A上运行rsync守护进程，在B上定时运行客户程序来备份web服务器A上需要备份的内容。<br>二，服务器端启动<br>usr/bin/rsync –daemon –config=/etc/rsyncd/rsyncd.conf</p>
+<p>三，客户端同步<br>rsync -参数 用户名@同步服务器的IP::rsyncd.conf中那个方括号里的内容 本地存放路径 如:<br>rsync -avzP nemo@192.168.10.1::nemo /backup<br>说明：<br>-a 参数，相当于-rlptgoD，-r 是递归 -l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；<br>-z 传输时压缩；<br>-P 传输进度；<br>-v 传输时的进度等信息</p>
+<p>======</p>
+<h1 id="15-dns-DNS-server"><a href="#15-dns-DNS-server" class="headerlink" title="15,dns DNS server"></a>15,dns DNS server</h1><p>yum install bind<br>vi /etc/named.conf<br>vi /etc/named.rfc1912.zones</p>
+<p>service named start    #启动DNS服务</p>
+<p>zone文件说明==========<br>$ORIGIN kernel.org<br>www CNAME www1<br>等同于<br>www.kernel.org. CNAME www1.kernel.org.</p>
+<p>@等价于$ORIGIN</p>
+<p>“@”代表相应的域名，也就是在named.conf中设定的zone，如在这里表示ixdba.net，IN表示后面的数据使用的是INTERNET标准。SOA，全称是“Start Of Authority”的意思，表示目前区域授权开始。</p>
+<p>用DNSmasq搭建小型的内网DNS</p>
+<p>=====</p>
+<h1 id="16-安装php和php-fpm"><a href="#16-安装php和php-fpm" class="headerlink" title="16,安装php和php-fpm"></a>16,安装php和php-fpm</h1><p>下载源码包<br>tar -xvf php-5.5.13.tar.bz2<br>cd php-5.5.13</p>
+<p>./configure –prefix=/usr/local/php –with-config-file-path=/etc –enable-inline-optimization –disable-debug –disable-rpath –enable-shared –enable-opcache –enable-fpm –with-fpm-user=www –with-fpm-group=www –with-mysql=mysqlnd –with-mysqli=mysqlnd –with-pdo-mysql=mysqlnd –with-gettext –enable-mbstring –with-iconv –with-mcrypt –with-mhash –with-openssl –enable-bcmath –enable-soap –with-libxml-dir –enable-pcntl –enable-shmop –enable-sysvmsg –enable-sysvsem –enable-sysvshm –enable-sockets –with-curl –with-zlib –enable-zip –with-bz2 –with-readline –without-sqlite3 –without-pdo-sqlite –with-pear<br>make &amp;&amp; make install</p>
+<p>cd /usr/local/php/bin/<br>./php -v    #查看php版本</p>
+<p>=====</p>
+<h1 id="17-拨号上网pppoe"><a href="#17-拨号上网pppoe" class="headerlink" title="17,拨号上网pppoe"></a>17,拨号上网pppoe</h1><p>yum install rp-pppoe</p>
+<p>pppoe-setup<br>/sbin/ifup ppp0<br>/sbin/ifdown ppp0</p>
+<p>adsl-setup<br>adsl-start<br>adsl-stop</p>
+<p>=====<br>masscan<br>masscan 0.0.0.0/0 -p0-65535    全网扫描<br>masscan 0.0.0.0/0 -p0-65535 –excludefile exclude.txt<br>不扫描exclude.txt文件中指定的段<br>masscan 0.0.0.0/0 -p0-65535 -oX scan.xml 输出结果到文件scan.xml<br>masscan 0.0.0.0/0 -p0-65535 –max-rate 100000<br>vi conf.txt<br>rate = 100000<br>output-format = xxx<br>output-status = all<br>output-filename = xxx.xxx<br>ports = 0-65535<br>range = 0.0.0.0-255.255.255.255<br>excludefile = exclude.txt<br>masscan -c conf.txt 加载配置文件conf.txt</p>
+<p>=======================CentOS redhat==================</p>
+<p>=======================CentOS 7=======================<br>使用firewall做防火墙<br>firewall-cmd –list-all-zones    #检查firewall开放的端口<br>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>等同于vim /etc/firewall/zones/public.xml，开放端口80<br>    <service name="ssh"><br>    <port protocol="tcp" port="80"><br>firewall-cmd –reload    #重载配置</port></service></p>
+<p>service firewalld restart    #重启防火墙<br>service firewalld start<br>service firewalld stop<br>systemctl status firewalld    #查看防火墙状态<br>firewall-cmd –state        #检查防火墙状态<br>firewall-cmd –list-all</p>
+<p>systemctl start firewalld.service</p>
+<p>使用iptables,ip6tables静态防火墙<br>yum install iptables-services<br>systemctl mask firewalld.service<br>systemctl enable iptables.service<br>systemctl enable ip6tables.service<br>vim /etc/sysconfig/iptables<br>vim /etc/sysconfig/ip6tables<br>systemctl stop firewalld.service<br>systemctl start iptables.service<br>systemctl start ip6tables.service</p>
+<p>=======================debain,ubuntu==================</p>
+<p>1,ip 配置<br>  vim /etc/network/interfaces<br>auto eth0<br>iface eth0 inet static<br>address 192.168.1.100<br>netmask 255.255.255.0<br>gateway 192.168.1.1</p>
+<p>route add default gateway 192.168.1.1    #    添加默认网关<br> kali ip配置<br>vi /etc/network/interfaces<br>auto lo<br>iface lo inet loopback<br>auto eth0<br>iface eth0 inet static<br>address 192.168.0.2<br>netmask 255.255.255.0<br>gateway 192.168.0.1</p>
+<p>/etc/init.d/networking restart</p>
+<p>2,dns配置<br>  vim /etc/resollv.conf<br>nameserver 8.8.8.8<br>nameserver 114.114.114.114</p>
+<p>sudo /etc/init.d/networking restart<br>sudo ifconfig eth0 down<br>sudo ifconfig eth0 up</p>
+<p>3,cat /etc/issue    #查看系统版本    </p>
+<p>====================freebsd=============<br>1,ip配置<br>ee /etc/rc.config    或者用ee /etc/rc.config<br>hostname=”Panabit81.com”<br>sshd_enable=”YES”<br>syslogd_enable=”NO”<br>ifconfig_le0=”inet 192.168.11.11 netmask=255.255.255.0”<br>defaultrouter=”192.168.11.1”<br>sh /etc/rc    #重启网络<br>/etc/netstart    #也是重启网络<br>2，dns配置<br>/etc/nsswitch.conf    #决定要先用/etc/hosts还是/etc/resolv.conf<br>vi /etc/resolv.conf<br>nameserver 8.8.8.8<br>nameserver 114.114.114.114<br>vi /etc/nsswitch.conf<br>hosts:    files dns    #files就是/etc/hosts,dns是/etc/resolv.conf</p>
+<html><br>    <b><br>    </b><br><br></html>
+
+
+<p>密钥转换<br>OpenSSH private key 转换成Putty private key<br>.opk转.ppk<br>应用场景：主要是SecureCRT的私钥转换成.ppk用在winscp<br>转换方法：winscp,ssh-&gt;authentication-&gt;Private key<br>file选中CRT中的私钥，然后winscp会自动识别并提示转换，按向导操作即可</p>
+
+          
         
       
     </div>
@@ -486,17 +677,43 @@
       
         
           
-          
+            <pre><code>
 #this script is made for check one host,if it is unreachable,then output result of traceroute can refer to traceroute.txt file.
-#want to check the re
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/20/一个ping,traceroute检测shell脚本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+#want to check the result,please use "tail -n 100 traceroute.txt"
+#version 2
+#20170614
+#!/bin/sh
+while [ "1" = "1" ]
+do 
+ping -c 1 192.168.30.21 > /dev/null
+a=$?
+if [ $a -eq 1 ]
+then 
+    echo $a >> ping.txt
+    b=$(awk 'END{print NR}' ping.txt)
+    if [ $b -eq 5 ]
+    then 
+        date=` date +%Y%m%d-%k:%M:%S `
+        echo "=======start=======" >> traceroute.txt
+        echo $date >> traceroute.txt
+        traceroute 8.8.8.8 >> traceroute.txt
+        c=$(awk 'END{print NR}' traceroute.txt)
+        if [ $c -gt 3000 ]
+        then
+            tail -n 300 > traceroute-temp.txt
+            cat traceroute-temp.txt > traceroute.txt
+            rm -rf traceroute-temp.txt
+        fi
+    fi
+else
+    cat /dev/null > ping.txt
+fi
+done
+</code></pre>
+
+<p>  脚本说明：ping检测到ip192.168.30.21，连续不通5次就输出traceroute 8.8.8.8的结果到traceroute.txt</p>
+
+          
         
       
     </div>
@@ -606,18 +823,11 @@
       
         
           
-          
-即是密钥对登陆，故而首先要生成密钥对 windows下用xshell,securecrt,生成密钥对 密钥分两种：标准公钥和vandyke私钥格式；openssh密钥格式
+            <ol>
+<li>即是密钥对登陆，故而首先要生成密钥对<br> windows下用xshell,securecrt,生成密钥对<br> 密钥分两种：标准公钥和vandyke私钥格式；openssh密钥格式</li>
+</ol>
 
-
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/10/linux密钥对+短语认证/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -727,15 +937,11 @@
       
         
           
-          问题描述：  linux安装phpstudy后，phpmyadmin打不开，报错  phpMyAdmin - Error  Cannot start session without errors, please check errors given in your PHP and/or webser
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/20/linux安装phpstudy后phpmyadmin error/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>问题描述：<br>  linux安装phpstudy后，phpmyadmin打不开，报错<br>  phpMyAdmin - Error<br>  Cannot start session without errors, please check errors given in your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.</p>
+<p>解决方法：<br>  vi /phpstudy/server/php/etc/php.ini<br>定位如下行<br>session.save_path = “”<br>修改为<br>session.save_path = “/phpstudy/www/tmp”<br>如果行首有分号“;”要删除</p>
+<p>然后重启phpstudy<br>phpstudy restart</p>
+
+          
         
       
     </div>
@@ -845,15 +1051,10 @@
       
         
           
-            windows电脑虚拟wifi共享网络，无线网卡共享有线网卡网络，无线网卡共享无线网卡网络首先，我们一般会netsh wlan show drivers    #检查下hosted network supported 是否是yes,如果是no，非win10的操作系统，则可以尝试下更新网卡驱动；如
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/24/windows虚拟wifi有关/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>  windows电脑虚拟wifi共享网络，无线网卡共享有线网卡网络，无线网卡共享无线网卡网络<br>首先，我们一般会<br>netsh wlan show drivers    #检查下hosted network supported 是否是yes,如果是no，非win10的操作系统，则可以尝试下更新网卡驱动；如果是win10的系统，则用win10自带的Mobile hotspot去共享；如果是yes,则继续<br>netsh wlan set hostednetwork mode=allow ssid=wifi key=123456789<br>netsh wlan start hostednetwork<br>netsh wlan show hostednetwork</p>
+<p>如果出现wifi自动关闭，或无连接终端，wifi自动关闭的情况<br>则可以在设备管理器里找出虚拟出的网卡，然后右键属性，电源管理，取消勾选“允许电脑关闭此设备已节能”</p>
+
+          
         
       
     </div>
@@ -963,17 +1164,11 @@
       
         
           
-            故障表述：  笔记本在使用外接显示器时，导致系统桌面图标错乱，每次移动好之后又会变乱，不是桌面图标自动排列的问题。  
-  故障原因：  两台显示器分辨率不一样  
-  解决方法：  在桌面鼠标右键，单击display settings-&gt;display-&gt;Advanced disp
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/21/解决外接显示器桌面图标变乱/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>  <strong>故障表述：</strong><br>  笔记本在使用外接显示器时，导致系统桌面图标错乱，每次移动好之后又会变乱，不是桌面图标自动排列的问题。  </p>
+<p>  <strong>故障原因：</strong><br>  两台显示器分辨率不一样  </p>
+<p>  <strong>解决方法：</strong><br>  在桌面鼠标右键，单击display settings-&gt;display-&gt;Advanced display settings,把1，2显示器的Resolution选项里的分辩率选成一样。</p>
+
+          
         
       
     </div>
@@ -1083,21 +1278,21 @@
       
         
           
-          背景知识openSSL是密码学库，主要设计目的是加密网络数据流（应用层和传输层）。OpenSSH是使用OpenSSL实现的Remote Shell  
-  运维中常用的连接软件有:
-1. xshell
+            <p>背景知识<br>openSSL是密码学库，主要设计目的是加密网络数据流（应用层和传输层）。<br>OpenSSH是使用OpenSSL实现的Remote Shell  </p>
+<p>  运维中常用的连接软件有:</p>
+<pre><code>1. xshell
 2. securecrt
 3. putty
 4. winscp 图形化sftp
-  xshell推
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/02/私钥转换/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+</code></pre><p>  xshell推荐使用，因为既可以用rsa格式的私钥，也可以用PPK私钥</p>
+<hr>
+<h3 id="securecrt下的私钥转换成winscp下可用的ppk私钥的方法"><a href="#securecrt下的私钥转换成winscp下可用的ppk私钥的方法" class="headerlink" title="securecrt下的私钥转换成winscp下可用的ppk私钥的方法"></a>securecrt下的私钥转换成winscp下可用的ppk私钥的方法</h3><p><strong>方法一</strong>：直接用winscp指定securecrt的私钥，软件会自动识别并提示转换成ppk，按向导提示操作即可<br><strong>方法二</strong>：用putty key generator将rsa私钥转换成ppk私钥<br><strong>方法三</strong>：用高于6.5版本的securecrt 工具-&gt;转换私钥为openssh格式  </p>
+<hr>
+<p>securecrt<br>secure shell (ssh)<br>openssh         des-ede3-cbc rsa private key<br>winscp<br>openssh rsa密钥 aes256-cbc putty private key ppk  </p>
+<p>openssh 密钥格式<br>putty private key密钥格式  </p>
+<p>openssl   </p>
+
+          
         
       
     </div>
@@ -1207,17 +1402,21 @@
       
         
           
-          dns关于域名的常识www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）www.baidu.com.    才是一个域名【注意那个点，表示根域】
-TLP(Top Level Domain)
-递归查询，响应请求下一级查询的地址，DNS本身之间
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/10/dns学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h1><p>关于域名的常识<br>www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）<br>www.baidu.com.    才是一个域名【注意那个点，表示根域】</p>
+<p>TLP(Top Level Domain)</p>
+<p>递归查询，响应请求下一级查询的地址，DNS本身之间不提问<br>迭代查询，<br>yum install bind<br>yum install bind-chroot    #用于改变目录/var/named-&gt;/var/named/chroot/var/named,提高安全性<br>cd /var/named<br>cp -a data/<br>cp -a dynamic/<br>cp -a slaves/<br>cp -a named.ca named.empty named.localhost named.loopback /var/named/chroot/var/named/</p>
+<p>关于权限<br>named下所有文件及目录用户组是named，文件所有者root,目录所有者named</p>
+<p>/var/named/chroot/var/named/下放正向解析的zone文件</p>
+<p>PTR PoinTeR,指向的缩写，反解到主机名</p>
+<ol>
+<li>点击开始, 点击运行, 键入REGEDIT, 然后按确定。</li>
+<li>点选至以下的子键:<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Linkage</li>
+<li>双击Route项,查看键值，找到排第一位的内容，然后点取消</li>
+<li>双击Bind项，找到第3步找到的排第一的内容，将其剪切粘贴到第一位，然后点击确定</li>
+<li>完成后按确定退出注册表编辑器.</li>
+</ol>
+
+          
         
       
     </div>
@@ -1327,22 +1526,15 @@ TLP(Top Level Domain)
       
         
           
-          #PSOIX
-Portable Operating System
-
-.dll 
-.so
-ELF  ABI:Application Binary Interface
-
+            <p>#PSOIX</p>
+<p>Portable Operating System</p>
+<ul>
+<li>.dll </li>
+<li>.so</li>
+<li>ELF<br>  ABI:Application Binary Interface</li>
+</ul>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/06/tomcat学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1452,28 +1644,44 @@ ELF  ABI:Application Binary Interface
       
         
           
-          强调这是斜体这也是斜体这是粗体这也是粗体&#160;    注：符号可跨行，可加空格&#160;  **这是空格或缩进可以,然后空格再接字符；
-这个是代码格式原样输出
+            <p>强调<br><em>这是斜体</em><br><em>这也是斜体</em><br><strong>这是粗体</strong><br><strong>这也是粗体</strong><br>&#160;    注：符号可跨行，可加空格<br><strong><em>&#160;  **</em></strong><br>这是空格或缩进可以,然后空格再接字符；</p>
+<pre><code>这个是代码格式原样输出</code></pre>
 
 
-分割线，可以单独成行，可含空格
+<h2 id="分割线，可以单独成行，可含空格"><a href="#分割线，可以单独成行，可含空格" class="headerlink" title="分割线，可以单独成行，可含空格"></a>分割线，可以单独成行，可含空格</h2><hr>
+<blockquote>
+<p>这是引用<br>翻译成html就是<blockquote></blockquote></p>
+<p>这是引用</p>
+<blockquote>
+<p>这是引用中的引用</p>
+</blockquote>
+</blockquote>
+<p>Setext方式标题</p>
+<h1 id="大标题"><a href="#大标题" class="headerlink" title="大标题"></a>大标题</h1><h2 id="小标题"><a href="#小标题" class="headerlink" title="小标题"></a>小标题</h2><p>Art方式标题<br>【注意#之后的空格一定不能少，少了就会原样文本输出】</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p>#无序列表<br>符号之后的空格不能少，”-“,”+”,”*”效果一样，但不可混合使用，【混合是嵌套列表】</p>
+<ul>
+<li>无序列表</li>
+<li>无序列表</li>
+</ul>
+<p>#有序列表<br>数字不能省，可无序，空格不能少</p>
+<ol>
+<li>有序列表</li>
+<li>有序列表</li>
+</ol>
+<p>#嵌套列表<br>“-，+，*”效果一样，空格不能少</p>
+<ul>
+<li>嵌套列表<ul>
+<li>嵌套列表</li>
+<li>嵌套列表</li>
+<li>嵌套列表</li>
+</ul>
+</li>
+</ul>
+<p>超链<br><a href="http://hellohelloword.github.io" title="Goin的博客">Goin’s github</a></p>
+<p>图片超链<br><a href="https://hellohelloword.github.io/uploads/avatar.png" title="这个是提示">这应该是标签</a></p>
+<p>插入图片测试<br><img src="/uploads/avatar.jpg" alt="" title="这是插入图片测试"><br><img src="/uploads/test.gif" alt=""></p>
 
-这是引用翻译成html就是
-这是引用
-
-这是引用中的引用
-
-
-Setext方式标题
-大标题小标
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/05/Markdown常用语法与学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
