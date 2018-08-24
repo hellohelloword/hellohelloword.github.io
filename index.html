@@ -296,6 +296,120 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2018/08/24/cisco与huawei trunk模式的端口互连/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/cisco与huawei trunk模式的端口互连/" itemprop="url">S7703与cisco3560通过trunk模式的端口互连，链路无法起来</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T22:34:19+08:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="根因"><a href="#根因" class="headerlink" title="根因:"></a>根因:</h2><p>由于思科设备在开启端口的trunk模式时会运行其私有协议DTP自动协商链路模式,导致S7703在与其对接时无法协商成功。<br> 解决方案<br>当华为交换机需与思科交换机对接并需要将各自端口模式配置为trunk模式时,建议关闭两端端口自协商,且思科设备关闭DTP协商。配置命令如下:</p>
+<h2 id="华为设备"><a href="#华为设备" class="headerlink" title="华为设备:"></a>华为设备:</h2><p>interface GigabitEthernet x/x/x<br> undo negotiation auto<br> port link-type trunk<br> port trunk allow-pass vlan xx</p>
+<h2 id="思科设备"><a href="#思科设备" class="headerlink" title="思科设备:"></a>思科设备:</h2><p>interface GigabitEthernetx/x/x<br> switchport trunk encapsulation dot1q<br> switchport trunk allowed vlan xx<br> switchport mode trunk<br> switchport nonegotiate<br> speed nonegotiate</p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/12/27/linux学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1366,130 +1480,13 @@ done
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/05/Markdown常用语法与学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Goin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/05/Markdown常用语法与学习笔记/" itemprop="url">Markdown常用语法与学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T18:49:00+08:00">
-                2017-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Markdown中的转义字符为\，可以转义的有：<br><code>    描述    实体名称    实体编号<br>\\     反斜杠<br>\`     反引号<br>\*     星号<br>\_     下划线<br>\{}     大括号<br>\[]     中括号<br>\()    小括号<br>\#     井号<br>\+     加号<br>\-     减号<br>\.     英文句号<br>\!    感叹号<br>&#160;    空格    &amp;nbsp;    &amp;#160;<br>&#60;    小于号    &amp;lt;    &amp;#60;<br>&#62;    大于号    &amp;gt;    &amp;#62;<br>&#38;    与号    &amp;amp;    &amp;#38;<br>&#34;    引号    &amp;quot;    &amp;#34;<br>&#39;    撇号    &amp;apos;    &amp;#39;</code></p>
-<p></p>
-<p>强调<br>*这是显示斜体*<br>_这也是显示斜体_<br><em>这是斜体的显示效果</em><br>**这是粗体**<br>__这也是粗体__<br><strong>这是粗体显示效果</strong><br>***这是粗体并斜体***<br><strong><em>这是粗体并斜体的效果</em></strong><br>空格的写法：&amp;#160;<br>&#160;这是空格效果<br>这&#160;这也是空格效果<br>&#60;pre&#62;&#60;code&#62;这个是代码格式原样输出&#60;/code&#62;&#60;/pre&#62;</p>
-<pre><code>这个是代码格式输出效果</code></pre>
-
-<p>需要原样输出字符，可在字符前加转义字符”\”<br>开头空4格或者TAB，可以整行原样输出<br>&#60;!--more--&#62;这是手动分割显示<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/05/Markdown常用语法与学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1532,7 +1529,7 @@ done
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1545,7 +1542,7 @@ done
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

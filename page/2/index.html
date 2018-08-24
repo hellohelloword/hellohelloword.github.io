@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="协议,protocol," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,17 +93,15 @@
 
 
 
-<meta name="description" content="这是一篇与DNS有关的文章">
-<meta name="keywords" content="协议,protocol">
-<meta property="og:type" content="article">
-<meta property="og:title" content="dns学习笔记">
-<meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/2017/07/10/dns学习笔记/index.html">
+<meta name="description" content="Welcome to my technological blog!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="行走在技术的道路上，目标高，精，尖！">
+<meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/page/2/index.html">
 <meta property="og:site_name" content="行走在技术的道路上，目标高，精，尖！">
-<meta property="og:description" content="这是一篇与DNS有关的文章">
-<meta property="og:updated_time" content="2018-04-01T02:49:38.655Z">
+<meta property="og:description" content="Welcome to my technological blog!">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dns学习笔记">
-<meta name="twitter:description" content="这是一篇与DNS有关的文章">
+<meta name="twitter:title" content="行走在技术的道路上，目标高，精，尖！">
+<meta name="twitter:description" content="Welcome to my technological blog!">
 
 
 
@@ -131,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/10/dns学习笔记/"/>
+  <link rel="canonical" href="https://hellohelloword.github.io/my-hexo-blog/page/2/"/>
 
 
 
 
 
-  <title>dns学习笔记 | 行走在技术的道路上，目标高，精，尖！</title>
+  <title>行走在技术的道路上，目标高，精，尖！</title>
   
 
 
@@ -162,7 +160,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,9 +285,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -296,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/10/dns学习笔记/">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/05/Markdown常用语法与学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Goin">
@@ -313,7 +313,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dns学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/05/Markdown常用语法与学习笔记/" itemprop="url">Markdown常用语法与学习笔记</a></h1>
         
 
         <div class="post-meta">
@@ -325,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T12:36:00+07:00">
-                2017-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T18:49:00+08:00">
+                2017-07-05
               </time>
             
 
@@ -349,10 +351,6 @@
           
 
           
-              <div class="post-description">
-                  这是一篇与DNS有关的文章
-              </div>
-          
 
         </div>
       </header>
@@ -364,90 +362,59 @@
       
 
       
-        <h1 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h1><p>关于域名的常识<br>www.baidu.com    是一个主机名，FQDN（Full Qualified Domain Name）<br>www.baidu.com.    才是一个域名【注意那个点，表示根域】</p>
-<p>TLP(Top Level Domain)</p>
-<p>递归查询，响应请求下一级查询的地址，DNS本身之间不提问<br>迭代查询，<br><a id="more"></a><br>yum install bind<br>yum install bind-chroot    #用于改变目录/var/named-&gt;/var/named/chroot/var/named,提高安全性<br>cd /var/named<br>cp -a data/<br>cp -a dynamic/<br>cp -a slaves/<br>cp -a named.ca named.empty named.localhost named.loopback /var/named/chroot/var/named/</p>
-<p>关于权限<br>named下所有文件及目录用户组是named，文件所有者root,目录所有者named</p>
-<p>/var/named/chroot/var/named/下放正向解析的zone文件</p>
-<p>PTR PoinTeR,指向的缩写，反解到主机名</p>
-<ol>
-<li>点击开始, 点击运行, 键入REGEDIT, 然后按确定。</li>
-<li>点选至以下的子键:<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Linkage</li>
-<li>双击Route项,查看键值，找到排第一位的内容，然后点取消</li>
-<li>双击Bind项，找到第3步找到的排第一的内容，将其剪切粘贴到第一位，然后点击确定</li>
-<li>完成后按确定退出注册表编辑器.</li>
-</ol>
+        
+          <p>Markdown中的转义字符为\，可以转义的有：<br><code>    描述    实体名称    实体编号<br>\\     反斜杠<br>\`     反引号<br>\*     星号<br>\_     下划线<br>\{}     大括号<br>\[]     中括号<br>\()    小括号<br>\#     井号<br>\+     加号<br>\-     减号<br>\.     英文句号<br>\!    感叹号<br>&#160;    空格    &amp;nbsp;    &amp;#160;<br>&#60;    小于号    &amp;lt;    &amp;#60;<br>&#62;    大于号    &amp;gt;    &amp;#62;<br>&#38;    与号    &amp;amp;    &amp;#38;<br>&#34;    引号    &amp;quot;    &amp;#34;<br>&#39;    撇号    &amp;apos;    &amp;#39;</code></p>
+<p></p>
+<p>强调<br>*这是显示斜体*<br>_这也是显示斜体_<br><em>这是斜体的显示效果</em><br>**这是粗体**<br>__这也是粗体__<br><strong>这是粗体显示效果</strong><br>***这是粗体并斜体***<br><strong><em>这是粗体并斜体的效果</em></strong><br>空格的写法：&amp;#160;<br>&#160;这是空格效果<br>这&#160;这也是空格效果<br>&#60;pre&#62;&#60;code&#62;这个是代码格式原样输出&#60;/code&#62;&#60;/pre&#62;</p>
+<pre><code>这个是代码格式输出效果</code></pre>
 
+<p>需要原样输出字符，可在字符前加转义字符”\”<br>开头空4格或者TAB，可以整行原样输出<br>&#60;!--more--&#62;这是手动分割显示<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/05/Markdown常用语法与学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/协议-protocol/" rel="tag"># 协议,protocol</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/07/06/tomcat学习笔记/" rel="next" title="tomcat学习笔记">
-                <i class="fa fa-chevron-left"></i> tomcat学习笔记
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/02/私钥转换/" rel="prev" title="私钥转换ppk">
-                私钥转换ppk <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -455,10 +422,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -478,17 +441,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -541,22 +495,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dns"><span class="nav-number">1.</span> <span class="nav-text">dns</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -689,10 +627,10 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-
+  
 
   
 
