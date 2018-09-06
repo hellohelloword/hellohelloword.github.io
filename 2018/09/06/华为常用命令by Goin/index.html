@@ -1,0 +1,807 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="network,huawei,网络,华为," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="###################################### 常用命令######################################    1U=44.5mm    核心：Core,汇聚：Dditribution,接入：AccessPVID=private vlan ID,华为的缺省vlan叫private vlan,cisco的缺省vlan叫native vlans">
+<meta name="keywords" content="network,huawei,网络,华为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为常用命令">
+<meta property="og:url" content="https://hellohelloword.github.io/my-hexo-blog/2018/09/06/华为常用命令by Goin/index.html">
+<meta property="og:site_name" content="行走在技术的道路上，目标高，精，尖！">
+<meta property="og:description" content="###################################### 常用命令######################################    1U=44.5mm    核心：Core,汇聚：Dditribution,接入：AccessPVID=private vlan ID,华为的缺省vlan叫private vlan,cisco的缺省vlan叫native vlans">
+<meta property="og:updated_time" content="2018-09-06T05:15:32.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="华为常用命令">
+<meta name="twitter:description" content="###################################### 常用命令######################################    1U=44.5mm    核心：Core,汇聚：Dditribution,接入：AccessPVID=private vlan ID,华为的缺省vlan叫private vlan,cisco的缺省vlan叫native vlans">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hellohelloword.github.io/my-hexo-blog/2018/09/06/华为常用命令by Goin/"/>
+
+
+
+
+
+  <title>华为常用命令 | 行走在技术的道路上，目标高，精，尖！</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">行走在技术的道路上，目标高，精，尖！</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Goin's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            我的简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2018/09/06/华为常用命令by Goin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">华为常用命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T11:13:00+07:00">
+                2018-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>######################################</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>######################################<br>    1U=44.5mm<br>    核心：Core,汇聚：Dditribution,接入：Access<br>PVID=private vlan ID,华为的缺省vlan叫private vlan,cisco的缺省vlan叫native vlan<br>scheme/计划<br>alarm/警告<br>entries/进入<br>authentication/鉴定<br>authorization/授权<br>anti-attack/抗攻击的<br>URPF(Unicast Reverse Path Forward)/单播反向路径发送<br>abnormal/反常的，变态的<br>fragment/碎片<br>specify/vt.指定；详细说明<br>characteristics/n.特征<br>discard=drop/vt.vi.n.抛弃<br>combo/n.联合体，复用端口</p>
+<p>======通用命令==========<br>交换机默认的 bootrom 密码<br>交换机系统启动bootrom时，在2秒内按下“CTRL＋B”，此处需要输入密码才<br>能进入BOOTROM菜单。默认密码如下： </p>
+<ol>
+<li>S9300 V100R006及其之前的版本：9300 </li>
+<li>S7700 V100R006及其之前的版本：huawei </li>
+<li>盒式交换机V100R006(V100R006C03除外)及其之前的版本：huawei </li>
+<li>全系列以太网交换机V200R001、V100R006C03版本：Admin@huawei.com</li>
+</ol>
+<p>console口密码破解<br><a id="more"></a><br>进入BOOTROM菜单<br>选择7，clear password for console user<br>再选择1,Boot with default mode</p>
+<p>清空恢复交换机出厂配置</p>
+<p><quidway>reset saved-configuration<br>The configuration willl ve erased to reconfigure.Continue?[Y/n]:y</quidway></p>
+<p><quidway>reboot<br>Warning:All the configuration will be saved to the configuration file for the<br>next startup:,Continue?[Y/N]:n</quidway></p>
+<p>1，<quidway>display interface ethernet brief    #show ip interface account<br>2,<quidway>display vlan<br>3,<quidway>display current-configuration    #show running-config<br>4,<quidway>system-view    #enable<br>  [quidway]vlan 10    #switch#vlan database    switch(config)#vlan </quidway></quidway></quidway></quidway></p>
+<pre><code>#switch(vlan)vlan 10
+</code></pre><p>  [quidway]vlan batch 10 20 30    #批量创建vlan10 vlan20 vlan30<br>  [Quidway]sysname Distribution-1f-<br>    核心：Core,汇聚：Dditribution,接入：Access<br>  [Quidway]display user-interface    #显示所有用户的权限<br>  [Quidway]display logbuffer        #显示系统日志信息<br>  <quidway>terminal monitor        #启用终端显示信息，可查看最近端口的动态信息<br>  <quidway>undo terminal monitor    #关闭终端信息显示<br>  <quidway>terminal logging         #启用终端显示日志信息<br>  <quidway>display elabel         #显示序列号，BarCode为设备序列号<br>  <quidway>dis clock            #查看时间<br>  <quidway>ping -c 100 192.168.44.251    #不断地ping 100次<br>  <quidway>display arp dynamic vlan    #显示端口连接的mac-ip</quidway></quidway></quidway></quidway></quidway></quidway></quidway></p>
+<p>5,trunk<br>  error:please renew the default configurations.<br>  解决：undo port default vlan    #先删除端口加入的vlan，再port link-type trunk<br>  [quidway-ethernet0/0/48]port link-type trunk<br>  [quidway-ethernet0/0/48]port trunk permit vlan all<br>  [quidway-ethernet0/0/48]port trunk allow-pass vlan 1 20 507</p>
+<pre><code>#允许指定vlan通过
+</code></pre><p>  [quidway-ethernet0/0/48]port trunk allow-pass vlan all</p>
+<pre><code>#允许所有vlan通过
+</code></pre><p>  access<br>  [quidway-ethernet0/0/1]port link-type access    </p>
+<pre><code>#(config-if)#switchprot mode access 
+</code></pre><p>  [quidway-ethernet0/0/1]port deafult vlan 10    </p>
+<pre><code>#配置接口加入vlan10(PVID)|(config-if)
+#switchprot access vlan 10
+</code></pre><p>  [quidway-ethernet0/0/1]quit<br>  <quidway-ethernet0 0="" 1="">save</quidway-ethernet0></p>
+<p>  hybrid<br>    hybrid模式对不同的VLAN的数据去掉Tag，使不同VLAN的主机可以通信。<br>  [Quidway-eternet0/0/1]port link-type hybrid<br>  [Quidway-eternet0/0/1]port hybrid untagged vlan 2 to 5</p>
+<p>#连续vlan用to untag<br>  [Quidway-eternet0/0/1]port hybrid untagged vlan 8</p>
+<p>#不连续vlan要单独一个个untag添加</p>
+<p>6,loopback<br>[Quidway]interface loopback 0<br>[Quidway-loopback0]ip address 192.168.1.3 24 </p>
+<p>6,HUAWEI SPAN<br>ex:<br>[quidway]observe-port 1 interface ethernet 0/0/2    #把0/0/2创建为observe port 1<br>[quidway]interface ethernet 0/0/48<br>[quidway-ethernet0/0/48]port-mirroring to observe-port 1 both</p>
+<p>#将0/0/48双向流量镜像到observe port 1上</p>
+<p>7,端口隔离[同vlan不能直接通信，需经由网关通信]<br>[quidway-Ethernet0/0/1]port-isolate enable </p>
+<p>8,端口模式转换trunk-&gt;access<br>[quidway-Ethernet0/0/48]undo port trunk allow-pass vlan all<br>[quidway-Ethernet0/0/48]port trunk allow-pass vlan 1<br>[quidway-Ethernet0/0/48]port link-type access    #先undo所有的，然后在配</p>
+<p>9,端口批量处理/interface range fa 0/1 -10<br>[Quidway]port-group 1    #创建一个端口组<br>[Quidway-port-group-1]group-member Ethernet 0/0/1 to Ethernet 0/0/10<br>[Quidway-port-group-1]port link-type access<br>[Quidway-port-group-1]port default vlan 2    #将端口组加入vlan</p>
+<p>10,配置时间</p>
+<p><quidway>clock datetime HH:MM:SS YYYY-MM-DD<br>[Quidway]ntp-service unicast-server 98.175.203.200</quidway></p>
+<p>11,配置vty ssh登陆<br>1&gt;====<br>[quidway]aaa                #创建AAA用户<br>[quidway-aaa]local-user grit password cipher grit2015<br>[quidway-aaa]local-user grit privilege level 3    #指定grit为管理级<br>[Quidway-aaa]local-user grit service-type telnet ssh    #配置grit应用的服务<br>2&gt;====<br>[Quidway]rsa local-key-pair create    #生成本地密钥对(主要用于ssh)<br>[quidway]stelnet server enable        #ssh使能<br>[quidway]ssh user grit service-type stelnet</p>
+<p>#stelnet可以改成all，就是给grit多一个sftp服务<br>[quidway]ssh user grit authentication-type password</p>
+<p>#配置ssh用户认证和服务方式,password可以改成all<br>3&gt;=====vty接口配置<br>[quidway]user-interface vty 0 4        #进入vty<br>[quidway-ui-vty0-4]authentication-mode aaa<br>[quidway-ui-vty0-4]protocol inbound ssh</p>
+<p>#如果ssh改成all则是支持所有即ssh,telnet方式登陆</p>
+<p>12，ssh命令<br>[quidway]stelnet 192.168.44.248    #交换机运行ssh互连，注意要system-view进配置模式</p>
+<p>[quidway]ssh client first-time enable</p>
+<p>#启用stenet.若报错，可能是没开启stelnet.<br>13, console口配置<br>[quidway]header login information #<br>    This device is belong to CamboTech.</p>
+<pre><code>#    #类似于cisco motd banner
+</code></pre><p>13, 清空端口配置，恢复默认<br>[Quidway-GigabitEthernet0/0/1]clear configuration this</p>
+<p>============交换机===================<br>1，s2700<br>缺省配置：<a href="https://192.168.1.253" target="_blank" rel="external">https://192.168.1.253</a> admin/admin@huawei.com<br>配置交换机网管使能</p>
+<p><quidway>system-view<br>[QuidWay]interface meth 0/0/1<br>[QuidWay-MEth0/0/1]ip address 192.168.1.254 24    #配置交换机管理IP<br>[QuidWay-MEth0/0/1]quit<br>[QuidWay]vlan 9    #创建vlan 9<br>[QuidWay-vlan9]quit<br>[QuidWay]interface vlanif 9<br>[QuidWay-vlanif9]ip address 192.168.1.254 24    #将管理IP配置给vlanif9接口<br>[QuidWay-vlanif9]quit<br>[QuidWay]interface Ethernet 0/0/1<br>[QuidWay-Ethernet0/0/1]port link-type access<br>[QuidWay-Ethernet0/0/1]port default vlan 9    #将1口划入vlan9</quidway></p>
+<p>[Quidway]user-interface vty 0 4<br>[Quidway-ui-vty0-4]authentication-mode aaa    #telnet使用aaa鉴权</p>
+<p>[QuidWay]aaa<br>[QuidWay-aaa]local-user admin password cipher admin@huawei.com</p>
+<p>#配置admin/admin@huawei.com用户<br>[QuidWay-aaa]local-user admin privilege level 3</p>
+<p>#修改admin等级为3，【0级-参观级，1级-监控级，2级-配置级，3级-管理级】<br>[QuidWay-aaa]local-user admin service-type telnet</p>
+<p>#配置admin用户应用的服务<br>[QuidWay-aaa]local-user admin ftp-directory flash:    #暂不明。<br>[QuidWay-aaa]quit<br>[QuidWay]quit</p>
+<p><quidway>save<br>2,HuaWei snmp<br>[QuidWay]snmp-agent    #snmp使能<br>[QuidWay]snmp-agent community read public    #设置读团体名称为public<br>[QuidWay]snmp-agent community write private    #设置写团体名称为pravite<br>[QuidWay]snmp-agent sys-info version all    #设置snmp版本<br>[QuidWay]snmp-agent sys-info contact 0714529899    #设置联系号码<br>[QuidWay]snmp-agent sys-info location Distribution-3F-IToffice    #设置位置信息</quidway></p>
+<p>3,配置QOS<br>[QuidWay]qos lr inbound cir 10240 cbs 2048000    #配置入方向的流量整形速率10M<br>[QuidWay]qos lr outbound cir 10240 cbs 204800    #配置出方向的流量整形速率10M<br>cbs=200<em>cir<br>pbs=2</em>cbs<br>CBS = 200 <em> CIR；PBS = 2 </em> CBS = 2 <em> 200 </em> CIR = 400 * CIR；其中，CIR单位为<br>Kbps，CBS、PBS单位为Byte。  </p>
+<p>【<br>cir(Committed Information Rate，承诺信息速率<br>pir(Peak Information Rate，     峰值信息速率 即允许传输或转发报文的最大速率；单位为bit<br>cbs(Committed Burst Size)    承诺突发尺寸 令牌桶的容量，即每次突发所允许的最大的流量尺寸。设置的突发尺寸必须大于最大报文长度。计量单位为byte（字节）。<br>PBS：(Peak Burst Size)     峰值突发尺寸<br>EBS：(Excess Burst Size，超出突发尺寸) 即瞬间能够通过的超出突发流量。<br>】</p>
+<p>【注：V200R005C00之前的版本S2750，S5700S-LI,S5700LI设备只支持1个vlanif接口，默认配置在vlanif1，如需使用需先删除vlanif1。】<br>4,配置gvrp(generic vlan registration protocol=cisco vtp)</p>
+<p>[Quidway]display gvrp statistics    #查看开启gvrp的端口<br>gvrp服务端<br>[quidway]vlan 20 30 40    #配置vlan<br>[quidway]quit<br>[quidway]gvrp</p>
+<p>#全局开启gvrp,undo全局gvrp后所有gvrp端口undo，重新gvrp后需手动开启<br>[quidway]interface ethernet 0/0/24    #端口开启gvrp,downlink port<br>[quidway-GigabitEthernet0/0/24]port link-type trunk<br>[quidway-GigabitEthernet0/0/24]port trunk allow-pass vlan all<br>[quidway-GigabitEthernet0/0/24]gvrp<br>[quidway-GigabitEthernet0/0/24]quit<br>[quidway]quit<br>[quidway]save</p>
+<p>gvrp客户端<br>[quidway]gvrp    #全局开启gvrp<br>[quidway]interface ethernet 0/0/24    #端口开启gvrp,uplink port<br>[quidway-GigabitEthernet0/0/24]port link-type trunk<br>[quidway-GigabitEthernet0/0/24]port trunk allow-pass vlan all<br>[quidway-GigabitEthernet0/0/24]gvrp<br>[quidway-GigabitEthernet0/0/24]quit<br>[quidway]quit<br>[quidway]save<br>【注意：在gvrp中任意一台设备上手动编辑vlan，都可编辑到加入了gvrp的所有设备上，不建议此做法，难于管理】</p>
+<p>4,配置dhcp snooping<br>DHCP Snooping是DHCP的一种安全特性，通过截获DHCP Client和DHCP<br>Server之间的DHCP报文并进行分析处理，可以过滤不信任的DHCP报文并建立和维护一个DHCP Snooping绑定表。DHCP Snooping通过记录DHCP Client的IP地址与MAC地址的对应关系，保证合法用户能访问网络，作用相当于在DHCP Client和DHCP Server之间建立一道防火墙。<br>DHCP Snooping可以解决设备应用DHCP时遇到DHCP DoS（Denial of Service）攻击、DHCP Server仿冒攻击、DHCP仿冒续租报文攻击等问题。<br>[quidway]dhcp enable<br>[quidway]dhcp snooping enable    #全局dhcp snooping enable<br>[quidway]dhcp server detect    #伪dhcp server探测功能使能<br>[quidway-GigabitEthernet0/0/2]dhcp snooping enable    #用户侧端口dhcp<br>snooping使能<br>[quidway-GigabitEthernet0/0/2]dhcp snooping untrusted</p>
+<p>#用户侧端口untrusted模式<br>[quidway-GigabitEthernet0/0/2]dhcp snooping alarm dhcp-reply enable thresho ld<br>120    #使能不信任端口收到的DHCP reply报文丢弃告警功能，并配置告警阈值 </p>
+<p>5，阻断DHCP<br>[Quidway]acl 3888<br>[Quidway-acl-adv-3888] rule 1 deny udp source-port eq bootps<br>[Quidway-acl-adv-3888] rule 2 deny udp destination-port eq bootpc<br>[Quidway]traffic-filter vlan 1 inbound acl 3888    #应用到vlan 1<br>[QuidWay]interface gigabitethernet 0/0/1<br>[QuidWay-GigabitEthernet0/0/1]traffic-filter outbound acl 3888</p>
+<p>#应用到G0/0/1口，阻断dhcp向G0/0/1口扩散出去。<br>6,acl<br>acl 2000-2999 basic access-list<br>    3000-3999 advanced access-list<br>    4000-4999 L2 access-list<br>    5000-5999 user-defined access-list<br>[Quidway]time-range block 00:00 to 23:00 daily    #定义使能时间段block<br>[Quidway]acl 2000<br>[Quidway-acl-basic-2000]rule 10 deny source 192.168.88.0 0.0.0.255 time-range<br>block    #通配符wildcard应该是反掩码wildcard-mask<br>[Quidway-acl-basic-2000]rule 11 permit source any<br>[Quidway]interface gigabitethernet 0/0/2<br>[Quidway-GigabitEthernet0/0/2]traffic-filter inbound acl 2000<br>[Quidway-GigabitEthernet0/0/2]quit<br>[Quidway]quit</p>
+<p><quidway>save<br>7, 端口隔离<br>二层隔离<br>[Switch-GigabitEthernet0/0/1] port-isolate enable group 5   //端口GE0/0/1加入到端口隔离组5 </quidway></p>
+<p>单向隔离<br>[Switch-GigabitEthernet0/0/3] am isolate gigabitethernet 0/0/1<br>//在GE0/0/3上配置端口隔离功能，并指定隔离的端口是GE0/0/1，GE0/0/3上发出的报文不能到达GE0/0/1，<br>而GE0/0/1发出的报文可以到达 GE0/0/3</p>
+<p>二三层隔离<br>[Switch] port-isolate mode all<br>8,端口上使用IPSG静态ip-mac绑定<br>在交换机上添加一条静态绑定表项（源ip192.168.168.102<br>源mac为6a23-2363-73b2,应用的端口GE0/0/18）<br>[huawei]user-bind static ip-address 192.168.168.102 mac-address 6a23-2363-73b2<br>[huawei]interface gigabitethernet 0/0/18<br>[huawei-GigabitEthernet0/0/18]ip source check user-bind enable    </p>
+<p>环路<br>环路检测<br>防环路<br>[Quidway]dis loopback-detect<br>loop-detect<br>loopback<br>loopback-detect<br>[Quidway]loopback-detect enable    #全局loopback-detect使能<br>[Quidway]interface range GigabitEthernet 0/0/1 to GigabitEthernet 0/0/24<br>[Quidway]loopback-detect action block</p>
+<p>#检测到环路后的动作为block，如果是shutdown，触发后需手动开启(先shutdown，再undo<br>shutdown)<br>单个端口启用防环路<br>[Quidway]interface GigabitEthernet 0/0/1<br>[Quidway-GigabitEthernet0/0/18]loopback-detec enable<br>[Quidway-GigabitEthernet0/0/18]loopback-detec action block</p>
+<p>#[action可选参数：block,nolearn,quitvlan,shutdown,trap]<br>[Quidway]dis loopback-detect</p>
+<p>=============路由器==================<br>AR<br>AR配置NAT地址池<br>nat address-group 0 202.1.1.3 202.1.1.6    #nat地址池<br>radius scheme system<br>domain system<br>acl number 2000    #配置允许进行NAT的内网段<br>rule 0 permit source 192.168.0.0 0.0.0.255<br>rule 1 deny</p>
+<p>interface ethetnet 0/0<br>ip address 202.1.1.2 255.255.255.248<br>nat outbound 2000 address-group 0<br>interface ethernet 0/1<br>ip address 192.168.0.1 255.255.255.0    #内网网关<br>ip route-static 0.0.0.0 0.0.0.0 202.1.1.1 preference 60    #配置默认路由<br>配置关键点：<br>1）地址池一定要连续；<br>2）一定要在出接口做NAT转换；<br>3）默认路由一般要配置；</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network-huawei-网络-华为/" rel="tag"># network,huawei,网络,华为</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/24/cisco与huawei trunk模式的端口互连/" rel="next" title="S7703与cisco3560通过trunk模式的端口互连，链路无法起来">
+                <i class="fa fa-chevron-left"></i> S7703与cisco3560通过trunk模式的端口互连，链路无法起来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Goin" />
+          <p class="site-author-name" itemprop="name">Goin</p>
+           
+              <p class="site-description motion-element" itemprop="description">Welcome to my technological blog!</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Goin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div style="margin:0 auto;position: absolute;">
+<dl style="float:left">
+  <dt style="float:left">
+    <dd style="float:left;width:300px">
+      <span style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+      <span style="float:right">本站总访问量<span><span style="float:right" id="busuanzi_value_site_pv"></span>
+    </dd>
+  </dt>
+  <dt style="float:left;width:300px">
+    <dd>
+      <span style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span style="float:left">您是第</span>
+      <span style="float:left" id="busuanzi_value_site_uv"></span>
+      <span style="float:left">个小伙伴</span>
+    </dd>
+  </dt>
+</dl>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
