@@ -296,6 +296,134 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2018/09/06/华为初始化配置命令by Goin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Goin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/06/华为初始化配置命令by Goin/" itemprop="url">华为初始化配置命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T12:55:12+08:00">
+                2018-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#########################</p>
+<h1 id="华为初始化配置命令"><a href="#华为初始化配置命令" class="headerlink" title="华为初始化配置命令"></a>华为初始化配置命令</h1><p>#########################</p>
+<pre><code>核心：Core,汇聚：Dditribution,接入：Access
+</code></pre><p>=========通用配置命令===========<br>1,clea rconfiguration interface    #清除接口配置<br>2,<quidway>display logbuffer        #显示系统日志信息<br>3,<quidway>terminal monitor        #启用终端显示信息，可查看最近端口的动态信息<br>4,<quidway>undo terminal monitor    #关闭终端信息显示<br>5,<quidway>terminal logging         #启用终端显示日志信息</quidway></quidway></quidway></quidway></p>
+<p>========交换机配置命令==========<br>for H3C S3100-SI5100<br>1,</p>
+<p><quidway>system-view    #进入配置模式<br>[Quidway]sysname Distribution-3f-1    #配置名称为GR3f-CT-Core<br>Core/核心，Distribution/汇聚，Access/接入<br>2,配置管理vlan和IP<br>[Quidway]vlan 168<br>[Quidway-vlan2]quit<br>[Quidway]interface vlanif 168    #“168”为要配置ip的vlan ID<br>[Quidway-vlanif2]ip address 172.16.0.1 24</quidway></p>
+<p>===============================================<br>关于aaa ssh登陆配置的关键<br>1&gt;创建aaa用户<br> [Quidway-aaa]local-user grit password grit2015<br>2&gt;给予aaa用户ssh telnet服务权限ssh telnet<br> [Quidway-aaa]local-user grit service-type ssh telnet<br>3&gt;生成密钥对<br>[Quidway]rsa local-kup-pair create<br>4&gt;ssh使能,ssh用户配置服务类型（指定grit为ssh认证用户）<br>[Quidway]stelnet server enable<br>[Quidway]ssh user grit service-type all<br>[Quidway]ssh user grit anthenticationt-type all<br>5&gt;vty应用<br>[Quidway-ui-vty0-4]authentication-mode aaa<br>[Quidway-ui-vty0-4]protocol inbound all</p>
+<h1 id="–-gt-gt"><a href="#–-gt-gt" class="headerlink" title="–&gt;-&gt;"></a>–&gt;-&gt;</h1><p>3,在aaa添加用户<br>[Quidway]aaa<br>[Quidway-aaa]local-user grit password grit2015<br>[Quidway-aaa]local-user grit password cipher grit2015<br>[Quidway-aaa]local-user grit privilege level 3    #设置为配置级<br>[Quidway-aaa]local-user grit service-type telnet ssh    #配置grit应用的服务</p>
+<p>4,配置vty ssh登陆<br>1&gt;<br>[quidway]aaa                #创建AAA用户<br>[quidway-aaa]local-user grit password cipher grit2015<br>[quidway-aaa]local-user grit privilege level 3    #指定grit为管理级<br>[Quidway-aaa]local-user grit service-type telnet ssh    #配置grit应用的服务<br>2&gt;<br>[Quidway]rsa local-key-pair create    #生成本地密钥对(主要用于ssh)<br>[quidway]stelnet server enable        #ssh使能<br>[quidway]ssh user grit service-type stelnet<br>[quidway]ssh user grit authentication-type password    #配置ssh用户认证和服务方式<br>3&gt;vty接口配置<br>[quidway]user-interface vty 0 4        #进入vty<br>[quidway-ui-vty0-4]authentication-mode aaa</p>
+<h1 id="quidway-ui-vty0-4-protocol-inbound-ssh"><a href="#quidway-ui-vty0-4-protocol-inbound-ssh" class="headerlink" title="[quidway-ui-vty0-4]protocol inbound ssh"></a>[quidway-ui-vty0-4]protocol inbound ssh</h1><p>设置接口登陆密码，无需输入用户名<br>[Quidway-ut-vty0-4]authentication mode password    #接口改为密码认证</p>
+<h1 id="Quidway-ui-vty0-4-set-authentication-password-chiper-huawei123"><a href="#Quidway-ui-vty0-4-set-authentication-password-chiper-huawei123" class="headerlink" title="[Quidway-ui-vty0-4]set authentication password chiper huawei123"></a>[Quidway-ui-vty0-4]set authentication password chiper huawei123</h1><p>4，配置console<br>[Quidway]user-interface console 0<br>[Quidway-console0]authentication-mode aaa    #使用AAA鉴权<br>[Quidway-console0]authentication-mode password    #单独配置一个console口密码<br>[Quidway-console0]set authentication pasword cipher grit2015</p>
+<p>#配置console口登陆密码</p>
+<p>5,端口批量处理/interface range fa 0/1 -10<br>[Quidway]port-group 1    #创建一个端口组<br>[Quidway-port-group-1]group-member Ethernet 0/0/1 to Ethernet 0/0/10<br>[Quidway-port-group-1]port link-type access<br>[Quidway-port-group-1]port default vlan 2    #将端口组加入vlan 2<br>或者<br>[QuidWay]port-group group-member Ethernet 0/0/1 to Ethernet 0/0/10<br>[QuidWay-port-group]port link-type access<br>[QuidWay-port-group]port default vlan 2</p>
+<p>6，配置时间</p>
+<p><quidway>clock datetime HH:MM:SS YYYY-MM-DD<br>7,清空端口配置，恢复默认<br>[Quidway-GigabitEthernet0/0/1]clear configuration this</quidway></p>
+<p>*8,配置gvrp[透传学习到的vlan无法default到access口，初始不配置，没什么用]<br>[Quidway]gvrp    #gvrp全局使能<br>[Quidway]port-group gvrp    #建立gvrp端口组<br>[Quidway-port-group-gvrp]group-memeber GigabitEthernet 0/0/1 to<br>GigabitEthernet 0/0/2    #将端口添加进组<br>[Quidway-port-group-gvrp]port link-type trunk<br>[Quidway-port-group-gvrp]port trunk allow-pass vlan all    #必须是vlan all<br>[Quidway-port-group-gvrp]gvrp    #在端口上gvrp使能 </p>
+<p>=======路由器配置命令===========<br>AR<br>admin/admin<br>admin/Admin@123</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2018/08/24/cisco与huawei trunk模式的端口互连/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1362,124 +1490,6 @@ done
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://hellohelloword.github.io/my-hexo-blog/2017/07/06/tomcat学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Goin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="行走在技术的道路上，目标高，精，尖！">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/06/tomcat学习笔记/" itemprop="url">tomcat学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T13:57:31+08:00">
-                2017-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#PSOIX</p>
-<p>Portable Operating System</p>
-<ul>
-<li>.dll </li>
-<li>.so</li>
-<li>ELF<br>  ABI:Application Binary Interface</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1529,7 +1539,7 @@ done
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1542,7 +1552,7 @@ done
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
